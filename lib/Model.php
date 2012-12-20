@@ -30,7 +30,7 @@ class Model {
 	 * convenience, rather than multiple set() calls.
 	 */
 	public static function createPopulated($table, $id, $fields) {
-		Model $model = new Model($table);
+		$model = new Model($table);
 		$model->_id = $id;
 		$model->_fields = $fields;
 		return $model;

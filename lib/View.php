@@ -10,6 +10,16 @@ class View {
 	public function __construct($controller) {
 		$this->controller = $controller;
 		$this->addStylesheet("style.css");
+
+		$this->messages = Session::popMessages();
+	}
+
+	public function __get($name) {
+		if (property_exists($this, $name)) {
+			return $this->$name;
+		} else {
+			return array();
+		}
 	}
 
 	public function addStylesheet($filename) {
