@@ -6,10 +6,14 @@ class View {
 
 	public $controller;
 	public $styles = array();
+	public $js = array();
 
 	public function __construct($controller) {
 		$this->controller = $controller;
 		$this->addStylesheet("style.css");
+
+		$this->base = Config::get('global', 'baseurl');
+		$this->lang = Config::get('global', 'lang');
 
 		$this->messages = Session::popMessages();
 	}
@@ -18,7 +22,7 @@ class View {
 		if (property_exists($this, $name)) {
 			return $this->$name;
 		} else {
-			return array();
+			return '';
 		}
 	}
 
