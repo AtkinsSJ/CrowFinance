@@ -7,9 +7,11 @@ class Index extends Controller {
 	}
 
 	public function index() {
-		$transaction = new Model('transaction');
-		$transaction->load(142);
-		$this->view->transaction = $transaction;
+		$transactions = new Collection('transactions');
+		$transactions->sortBy('outgoing', 'DESC')
+					->page(3, 3)
+					->load();
+		$this->view->transaction = $transactions;
 		$this->render('index');
 	}
 }

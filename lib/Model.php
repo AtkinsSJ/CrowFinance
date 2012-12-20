@@ -13,14 +13,19 @@ class Model {
 	 * Empty constructor. Just initialises base state.
 	 */
 	public function __construct($table) {
-		$this->_table = $table . 's';
+		$this->_table = $table;
 
 		$this->_id = null;
 		$this->_fields = array();
 
+		Model::getDatabase(); // Init db;
+	}
+
+	public static function getDatabase() {
 		if (Model::$db == null) {
 			Model::$db = new Database();
 		}
+		return Model::$db;
 	}
 
 	/**
@@ -41,6 +46,10 @@ class Model {
 	 */
 	public static function setUserId($userId) {
 		Model::$userId = $userId;
+	}
+
+	public static function getUserId() {
+		return Model::$userId;
 	}
 	
 	/**
