@@ -11,14 +11,14 @@ class Bootstrap
 		
 		// If url is empty, go to the index
 		if (empty($url[0])) {
-			require('controllers/index.php');
+			require('controller/index.php');
 			$controller = new Index();
 			$controller->index();
 			return false;
 		}
 		
 		// Attempt to open the given controller
-		$file = "controllers/{$url[0]}.php";
+		$file = "controller/{$url[0]}.php";
 		if (file_exists($file))
 		{
 			require($file);
@@ -26,14 +26,13 @@ class Bootstrap
 		else
 		{
 			// Controller not found - use error controller
-			require('controllers/error.php');
+			require('controller/error.php');
 			$controller = new Error();
 			$controller->error404($urlString);
 			return false;
 		}
 
 		$controller = new $url[0];
-		$controller->loadMainModel($url[0]);
 
 		if (isset($url[2]))
 		{
@@ -45,7 +44,7 @@ class Bootstrap
 				);
 			} else {
 				// Method not found - use error controller
-				require('controllers/error.php');
+				require('controller/error.php');
 				$controller = new Error();
 				$controller->error404($urlString);
 				return false;
@@ -58,7 +57,7 @@ class Bootstrap
 				$controller->{$url[1]}();
 			} else {
 				// Method not found - use error controller
-				require('controllers/error.php');
+				require('controller/error.php');
 				$controller = new Error();
 				$controller->error404($urlString);
 				return false;
