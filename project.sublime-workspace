@@ -4,6 +4,10 @@
 		"selected_items":
 		[
 			[
+				"spl_",
+				"spl_autoload_register"
+			],
+			[
 				"_",
 				"__construct"
 			],
@@ -67,7 +71,88 @@
 			"file": "lib/Model.php",
 			"settings":
 			{
-				"buffer_size": 2070,
+				"buffer_size": 2117,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "lib/Database.php",
+			"settings":
+			{
+				"buffer_size": 437,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "lib/Bootstrap.php",
+			"settings":
+			{
+				"buffer_size": 1564,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "lib/User.php",
+			"settings":
+			{
+				"buffer_size": 2397,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "lib/Session.php",
+			"settings":
+			{
+				"buffer_size": 1572,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "lib/Controller.php",
+			"settings":
+			{
+				"buffer_size": 412,
+				"line_ending": "Windows",
+				"name": "<?php"
+			}
+		},
+		{
+			"file": "view/header.php",
+			"settings":
+			{
+				"buffer_size": 2157,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "lib/View.php",
+			"settings":
+			{
+				"buffer_size": 840,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "view/footer.php",
+			"settings":
+			{
+				"buffer_size": 921,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "controller/index.php",
+			"settings":
+			{
+				"buffer_size": 209,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "view/index/index.php",
+			"settings":
+			{
+				"buffer_size": 22,
 				"line_ending": "Windows"
 			}
 		}
@@ -81,6 +166,10 @@
 			[
 				"ssphp",
 				"Set Syntax: PHP"
+			],
+			[
+				"ssh",
+				"Set Syntax: HTML"
 			],
 			[
 				"Snippet: ",
@@ -104,6 +193,30 @@
 	},
 	"file_history":
 	[
+		"/C/xampp/htdocs/CrowFinance/index.php",
+		"/C/xampp/htdocs/CrowFinance/view/error/index.php",
+		"/C/xampp/htdocs/CrowFinance/config/config.ini",
+		"/C/xampp/htdocs/CrowFinance/lib/Config.php",
+		"/C/xampp/htdocs/CrowFinance/lib/View.php",
+		"/C/xampp/htdocs/CrowFinance/view/index/index.php",
+		"/C/xampp/htdocs/CrowFinance/controller/error.php",
+		"/C/xampp/htdocs/CrowFinance/README.md",
+		"/C/xampp/htdocs/CrowFinance/README",
+		"/C/xampp/htdocs/CrowFinance/csscrush/lib/Core.php",
+		"/C/xampp/htdocs/finances_mvc/old/css/oldstyle.css",
+		"/C/xampp/htdocs/finances_mvc/old/css/test.css",
+		"/C/xampp/htdocs/finances_mvc/old/css/template.css",
+		"/C/xampp/htdocs/finances_mvc/old/css/style.css",
+		"/C/xampp/htdocs/CrowFinance/controller/Index.php",
+		"/C/xampp/htdocs/finances_mvc/old/controllers/index.php",
+		"/C/xampp/htdocs/finances_mvc/old/libs/Controller.php",
+		"/C/xampp/htdocs/finances_mvc/old/libs/View.php",
+		"/C/xampp/htdocs/CrowFinance/lib/Controller.php",
+		"/C/xampp/htdocs/CrowFinance/lib/Database.php",
+		"/C/xampp/htdocs/CrowFinance/.htaccess",
+		"/C/xampp/htdocs/CrowFinance/controllers/error.php",
+		"/C/xampp/htdocs/finances_mvc/old/index.php",
+		"/C/xampp/htdocs/finances_mvc/old/libs/Database.php",
 		"/C/xampp/htdocs/mvc/lib/Model.php",
 		"/C/xampp/htdocs/finances_mvc/models/transactions_model.php",
 		"/C/xampp/htdocs/finances_mvc/libs/Database.php",
@@ -174,7 +287,7 @@
 	"groups":
 	[
 		{
-			"selected": 0,
+			"selected": 8,
 			"sheets":
 			[
 				{
@@ -182,7 +295,34 @@
 					"file": "lib/Model.php",
 					"settings":
 					{
-						"buffer_size": 2070,
+						"buffer_size": 2117,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1286,
+								1286
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/PHP/PHP.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "lib/Database.php",
+					"settings":
+					{
+						"buffer_size": 437,
 						"regions":
 						{
 						},
@@ -197,6 +337,246 @@
 						{
 							"syntax": "Packages/PHP/PHP.tmLanguage",
 							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "lib/Bootstrap.php",
+					"settings":
+					{
+						"buffer_size": 1564,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								504,
+								504
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/PHP/PHP.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "lib/User.php",
+					"settings":
+					{
+						"buffer_size": 2397,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								74,
+								74
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/PHP/PHP.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 4,
+					"file": "lib/Session.php",
+					"settings":
+					{
+						"buffer_size": 1572,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/PHP/PHP.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 5,
+					"file": "lib/Controller.php",
+					"settings":
+					{
+						"buffer_size": 412,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								161,
+								161
+							]
+						],
+						"settings":
+						{
+							"auto_name": "<?php",
+							"syntax": "Packages/PHP/PHP.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 6,
+					"file": "view/header.php",
+					"settings":
+					{
+						"buffer_size": 2157,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								275,
+								275
+							]
+						],
+						"settings":
+						{
+							"auto_name": "",
+							"syntax": "Packages/PHP/PHP.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 7,
+					"file": "lib/View.php",
+					"settings":
+					{
+						"buffer_size": 840,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								523,
+								523
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/PHP/PHP.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 8,
+					"file": "view/footer.php",
+					"settings":
+					{
+						"buffer_size": 921,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								921,
+								921
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/PHP/PHP.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 114.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 9,
+					"file": "controller/index.php",
+					"settings":
+					{
+						"buffer_size": 209,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								73,
+								73
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/PHP/PHP.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 10,
+					"file": "view/index/index.php",
+					"settings":
+					{
+						"buffer_size": 22,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								22,
+								22
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/PHP/PHP.tmLanguage"
 						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,

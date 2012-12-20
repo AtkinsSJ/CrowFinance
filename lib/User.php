@@ -12,6 +12,7 @@ class User {
 		// If the user is saved to the session, load it.
 		$attributes = Session::get('user');
 		if ($attributes) {
+			$attributes = unserialize($attributes);
 			$this->_id = $attributes['id'];
 			$this->_username = $attributes['username'];
 			$this->_displayName = $attributes['display_name'];

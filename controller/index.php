@@ -7,7 +7,9 @@ class Index extends Controller {
 	}
 
 	public function index() {
-		$this->view->title = "Hello, world!";
+		$transaction = new Model('transaction');
+		$transaction->load(142);
+		$this->view->transaction = $transaction;
 		$this->render('index');
 	}
 }

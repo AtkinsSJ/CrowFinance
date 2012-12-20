@@ -13,7 +13,7 @@ class Model {
 	 * Empty constructor. Just initialises base state.
 	 */
 	public function __construct($table) {
-		$this->_table = $table;
+		$this->_table = $table . 's';
 
 		$this->_id = null;
 		$this->_fields = array();
@@ -49,6 +49,7 @@ class Model {
 	 * Chainable
 	 */
 	public function load($id) {
+		$db = Model::$db;
 		$stmt = Model::$db->prepare(
 			"SELECT *
 			FROM {$db->tablePrefix}{$this->_table}
@@ -59,10 +60,14 @@ class Model {
 		if ( $stmt->execute( array('id' => $id,
 									'userId' => Model::$userId) ) ) {
 			$result = $stmt->fetch(PDO::FETCH_ASSOC);
+			if (!$result) {
+				throw new Exception('Record does not exist.');
+			}
 			$this->_id = $id;
 			$this->setMultiple($result);
 		} else {
-			throw new Exception( 'Could not load database data for a record: ' .$stmt->errorInfo());
+			$err = print_r($stmt->errorInfo(), true);
+			throw new Exception( 'Could not load database data for a record: ' . $err);
 		}
 
 		return $this; // Chaining
