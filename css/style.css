@@ -1,0 +1,444 @@
+/* Include the reset styles */
+@import url('reset.css');
+
+/* Plugin CSS */
+@import url('jquery-ui-1.8.16.custom.css');
+@import url('chosen.css');
+
+/* OOCSS Template */
+@import url('template.css');
+
+/*** VARIABLES ***/
+@define {
+	deep-blue: hsl(195, 53%, 79%);
+	pale-blue: hsl(195, 53%, 95%);
+}
+
+* {
+	transition: background-color 0.2s linear;
+}
+
+
+/***********************************************
+	Fancy form styling
+***********************************************/
+
+input[type=text],
+input[type=date],
+input[type=datetime],
+input[type=month],
+input[type=week],
+input[type=time],
+input[type=number],
+input[type=password],
+input[type=search],
+input[type=email],
+input[type=url],
+input[type=tel],
+input[type=color],
+select,
+textarea {
+	border: 1px solid #aaa;
+	padding: 3px;
+	border-radius: 4px;
+	width: 200px;
+}
+
+/* Inputs that have icons in */
+input[type=date],
+input[type=datetime],
+input[type=month],
+input[type=week],
+input[type=time],
+input[type=number],
+input[type=password],
+input[type=search],
+input[type=email],
+input[type=url],
+input[type=tel],
+input[type=color],
+input.currency {
+	background-repeat: no-repeat;
+	background-position: 5px center;
+	padding-left: 23px;
+}
+
+
+/** Icons for input boxes! **/
+input[type=date],
+input[type=datetime],
+input[type=month],
+input[type=week] { background-image: url(../img/calendar.png); }
+input[type=time] { background-image: url(../img/time.png); }
+input[type=number] { background-image: url(../img/calculator.png); }
+input.currency { background-image: url(../img/money_pound.png); }
+input[type=password] { background-image: url(../img/lock.png); }
+input[type=color] { background-image: url(../img/color_swatch.png); }
+input[type=search] { background-image: url(../img/magnifier.png); }
+input[type=email] { background-image: url(../img/email.png); }
+input[type=url] { background-image: url(../img/world_link.png); }
+input[type=tel] { background-image: url(../img/telephone.png); }
+
+/* ====== Blocks ====== */
+.block {
+
+}
+.block .title {
+	display: block;
+}
+.block .content {
+	display: block;
+}
+
+/* Dialogue block */
+.block.dialogue {
+	max-width: 400px;
+	margin: 20px auto;
+	padding: 10px;
+	border: 2px solid grey;
+	border-radius: 15px;
+	background: hsl(0,0%,95%);
+}
+.block.dialogue .title {
+	font-weight: bold;
+}
+.block.dialogue .content {
+	font-size: 90%;
+	color: hsl(0,0%,25%);
+}
+
+/* Form Block */
+.block.form {
+	max-width: 400px;
+	margin: 0 auto;
+}
+.block.form .title {
+	border-bottom: 2px solid $( deep-blue );
+}
+.block.form .description {
+	border-bottom: 2px solid $( deep-blue );
+}
+.block.form .formLine.buttons {
+	border-top: 2px solid $( deep-blue );
+}
+
+/* ====== Lists ====== */
+.navList {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+.navList li {
+	display: inline-block;
+}
+
+.headerNavList {
+	padding: 2px 0;
+	border-top: 4px solid $( deep-blue );
+	border-bottom: 4px solid $( deep-blue );
+}
+.headerNavList li {
+	border-right: 2px solid hsl(195, 53%, 85%);
+	padding: 0 .5em 0 .2em;
+}
+.headerNavList li:last-child {
+	border-right: none;
+}
+
+.footerNavList {
+	text-align: right;
+}
+
+/* Breadcrumbs */
+.breadcrumbs {
+	padding: 2px 0 4px;
+	border-bottom: 2px dashed $( deep-blue );
+}
+.breadcrumbs li {
+	display: inline;
+	font-size: 80%;
+}
+.breadcrumbs li:after {
+	content: "\00bb";
+	display: inline-block;
+	padding: 0 2px 0 6px;
+	font-size: 120%;
+}
+.breadcrumbs li:last-child:after {
+	content: "";
+}
+
+.buttonList {
+	list-style: none;
+	padding: 0;
+	margin: 0;
+	float: left;
+}
+.buttonList li {
+	margin: 5px 0;
+}
+.buttonList .button {
+	display: block;
+}
+
+
+/* ====== Buttons ====== */
+.button {
+	border: 1px solid grey;
+	border-radius: 6px;
+	padding: 2px 6px;
+	display: inline-block;
+	cursor: pointer;
+	
+	text-decoration: none;
+	font-weight: bold;
+	line-height: 20px;
+	color: hsl(0,0%,20%);
+	text-shadow: 1px 1px #fff;
+
+	background-color: hsl(0,0%,95%);
+	background-image: linear-gradient(top, hsl(0,0%,95%), hsl(0,0%,85%));
+}
+.button:hover,
+.button:focus {
+	background-color: hsl(0,0%,100%);
+	background-image: linear-gradient(top, hsl(0,0%,100%), hsl(0,0%,90%));
+}
+.button:active {
+	background-color: hsl(0,0%,90%);
+	background-image: linear-gradient(top, hsl(0,0%,75%), hsl(0,0%,85%));
+}
+
+/* Primary Button */
+.button.primary {
+	color: hsl(195,53%,20%);
+	text-shadow: 1px 1px #fff;
+	
+	background-color: $( pale-blue ); 
+	background-image: linear-gradient(top, $( pale-blue ), hsl(195, 53%, 70%));
+}
+.button.primary:hover,
+.button.primary:focus {
+	background-color: hsl(195, 53%, 100%);
+	background-image: linear-gradient(top, hsl(195, 53%, 100%), hsl(195, 53%, 75%));
+}
+.button.primary:active {
+	background-color: hsl(195, 53%, 85%);
+	background-image: linear-gradient(top, hsl(195, 53%, 85%), hsl(195, 53%, 60%));
+}
+
+/* Button indicators */
+.button.right:after {
+	content: '\25B6';
+	font-size: 80%;
+	vertical-align: text-top;
+	margin-left: 5px;
+}
+.button.left:before {
+	content: '\25C0';
+	font-size: 80%;
+	vertical-align: text-top;
+	margin-right: 5px;
+}
+.button.edit:before {
+	content: url(../img/pencil.png);
+	display: inline-block;
+	height: 14px;
+	margin: 0 4px 0 -1px;
+}
+.button.delete:before {
+	content: url(../img/delete.png);
+	display: inline-block;
+	height: 14px;
+	margin: 0 4px 0 -1px;
+}
+
+.button.expandDescription {
+	font-size: 60%;
+	padding: 0 2px;
+	line-height: 16px;
+	border-radius: 2px;
+	vertical-align: text-bottom;
+	transition: opacity 0.2s ease;
+	opacity: 0.5;
+}
+.button.expandDescription:hover,
+.button.expandDescription:focus,
+.button.expandDescription:active {
+	opacity: 1;
+}
+
+/* Button group - aka ( button | button | button ) */
+.buttonGroup {
+	display: inline-block;
+	vertical-align: middle;
+	white-space: nowrap;
+}
+.buttonGroup .button {
+	float: left;
+	margin-right: -1px;
+	border-radius: 0; 
+}
+.buttonGroup .button:first-child {
+	border-radius: 6px 0 0 6px;
+}
+.buttonGroup .button:last-child {
+	border-radius: 0 6px 6px 0;
+}
+
+/* ====== Tables ====== */
+table {
+	width: 100%;
+	line-height: 1.7em;
+}
+table p {
+	margin: 0;
+}
+
+/* Statement table */
+.statement thead {
+	border-bottom: 4px solid $( deep-blue );
+}
+
+.statement tfoot {
+	border-top: 4px solid $( deep-blue );
+}
+
+.statement tbody tr {
+	border-bottom: 1px dashed $( deep-blue );
+}
+.statement tbody tr:hover {
+	background-color: $( pale-blue );
+}
+.description {
+	width: 100%;
+	display: inline-block;
+	height: 1.7em;
+	overflow: hidden;
+	float: left;
+	
+	/* Leave room for the '...' */
+	padding-right: 1.5em;
+	margin-right: -1.5em;
+}
+.description.expanded {
+	height: auto;
+	white-space: normal;
+	margin: 0;
+	padding: 0;
+}
+
+/* Vertical table */
+.verticalTable {
+	
+}
+.verticalTable thead {
+	display: none;
+}
+.verticalTable tbody th {
+	text-align: right;
+}
+
+/* Cell types */
+table .date {
+	white-space: nowrap;
+	text-align: center;
+}
+table .number {
+	text-align: right;
+	white-space: nowrap;
+}
+table .category {
+	white-space: nowrap;
+}
+table .buttons {
+	text-align: center;
+}
+table .ralign {
+	text-align: right;
+}
+
+/* ====== Forms ====== */
+.formLine {
+	padding: 3px 0;
+	margin: 3px 0;
+	clear: both;
+}
+.formLine:nth-child(even) {
+	background-color: $( pale-blue );
+}
+
+.formLine input[type=:any(text, date, datetime, month, week, time, number, password, search, email, url, tel, color)],
+.formLine select,
+.formLine .chzn-container {
+	float: right;
+}
+
+/* Fix floated inputs breaking chosen. */
+.formLine .chzn-container input {
+	float: none;
+}
+
+.formLine.buttons {
+	text-align: right;
+}
+
+/*** Option Groups ***/
+.option-group-section.disabled {
+	background-color: 
+}
+
+/* **************** APPEARANCE ***************** */
+body {
+	font: 16px sans-serif;
+	background-color: #f2f5f7;
+	margin: 10px;
+}
+.page {
+	background-color: #ffffff;
+	border: 1px solid #dddddd;
+	border-radius: 6px;
+	background-clip: padding-box;
+	box-shadow: 3px 3px 5px hsla(0,0%,0%,0.1);
+}
+.body {
+	margin: 10px;
+}
+/* Extends head */
+.mainHead {
+	margin: 10px;
+}
+/* Extends foot */
+.mainFoot {
+	border-top: 4px solid $( deep-blue );
+	padding-top: 8px;
+	margin: 10px;
+	
+	font-size: 90%;
+}
+
+.copyright {
+	font-size:100%;
+}
+
+/* **************** TOOLS ***************** */
+.floatRight {
+	float: right;
+}
+
+/* Clearfixing */
+article::after,
+aside::after,
+details::after,
+figcaption::after,
+figure::after,
+footer::after,
+header::after,
+hgroup::after,
+nav::after,
+section::after,
+:any(.formLine)::after {
+	clear: both;
+	content: '';
+	display: block;
+}

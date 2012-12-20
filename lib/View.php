@@ -9,11 +9,12 @@ class View {
 
 	public function __construct($controller) {
 		$this->controller = $controller;
+		$this->addStylesheet("style.css");
 	}
 
 	public function addStylesheet($filename) {
 		$this->styles[] = csscrush::tag(
-			"css/$filename",
+			Config::get('global', 'cssdir') . $filename,
 			array('debug' => false)
 		);
 	}

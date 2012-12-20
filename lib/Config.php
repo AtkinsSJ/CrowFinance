@@ -18,17 +18,17 @@ class Config {
 			Config::$db = new Database();
 			
 			// Get database settings
-			$user = new User();
+		/*	$user = new User();
 			if ($user->isLoggedIn()){
 				Config::_loadUserSettings($user->getID());
-			}
+			}*/
 		}
 	}
 	
 	/**
 	 * Load all the user's settings from the database.
 	 */
-	private static function _loadUserSettings($userid) {
+	/*private static function _loadUserSettings($userid) {
 		$db = Config::$db;
 		$statement = $db->prepare(
 			"SELECT * FROM {$db->tablePrefix}configuration
@@ -42,12 +42,12 @@ class Config {
 				Config::$config['user'][$row->name] = $row->value;
 			}
 		}
-	}
+	}*/
 	
 	/**
 	 * Save the user's $settings (array of name => value) to the DB.
 	 */
-	public static function saveUserSettings($userid, $settings) {
+	/*public static function saveUserSettings($userid, $settings) {
 		$db = Config::$db;
 		$statement = $db->prepare(
 			"INSERT INTO {$db->tablePrefix}configuration
@@ -55,12 +55,6 @@ class Config {
 			VALUES (:userid, :name, :value)
 			ON DUPLICATE KEY UPDATE value = :value"
 			
-			/*
-			UPDATE {$db->tablePrefix}configuration
-			SET value = :value
-			WHERE userid = :userid
-				AND name = :name"
-			*/
 		);
 		
 		foreach ($settings as $name => $value) {
@@ -82,7 +76,7 @@ class Config {
 		}
 		
 		return true;
-	}
+	}*/
 	
 	/**
 	 * Returns the value of $variable from the [$section] section
