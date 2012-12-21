@@ -33,6 +33,13 @@ class View {
 		);
 	}
 
+	public function pushMessage($message, $type=Message::INFO) {
+		$this->messages[] = (object) array(
+			'msg' => $message,
+			'type' => $type
+		);
+	}
+
 	public function render($action) {
 		require("view/header.php");
 		require("view/{$this->controller}/{$action}.php");

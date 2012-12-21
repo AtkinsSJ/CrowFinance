@@ -4,7 +4,7 @@
 		<footer class="foot mainFoot">
 			<div class="line">
 				<small class="unit copyright">
-					&copy; Copyright Samuel Atkins 2011
+					&copy; Copyright Samuel Atkins 2012
 				</small>
 				
 				<nav class="unit lastUnit">

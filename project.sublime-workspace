@@ -4,6 +4,14 @@
 		"selected_items":
 		[
 			[
+				"_sor",
+				"_sortDirection"
+			],
+			[
+				"_sort",
+				"_sortField"
+			],
+			[
 				"spl_",
 				"spl_autoload_register"
 			],
@@ -71,23 +79,24 @@
 			"file": "lib/Model.php",
 			"settings":
 			{
-				"buffer_size": 2117,
+				"buffer_size": 2360,
 				"line_ending": "Windows"
 			}
 		},
 		{
-			"file": "lib/Database.php",
+			"file": "lib/Collection.php",
 			"settings":
 			{
-				"buffer_size": 437,
-				"line_ending": "Windows"
+				"buffer_size": 1835,
+				"line_ending": "Windows",
+				"name": "<?php"
 			}
 		},
 		{
-			"file": "lib/Bootstrap.php",
+			"file": "controller/index.php",
 			"settings":
 			{
-				"buffer_size": 1564,
+				"buffer_size": 338,
 				"line_ending": "Windows"
 			}
 		},
@@ -100,6 +109,32 @@
 			}
 		},
 		{
+			"file": "controller/login.php",
+			"settings":
+			{
+				"buffer_size": 835,
+				"line_ending": "Windows",
+				"name": "<?php"
+			}
+		},
+		{
+			"file": "view/login/index.php",
+			"settings":
+			{
+				"buffer_size": 897,
+				"line_ending": "Windows",
+				"name": "<p>Log in here!</p>"
+			}
+		},
+		{
+			"file": "lib/Controller.php",
+			"settings":
+			{
+				"buffer_size": 412,
+				"line_ending": "Windows"
+			}
+		},
+		{
 			"file": "lib/Session.php",
 			"settings":
 			{
@@ -108,19 +143,10 @@
 			}
 		},
 		{
-			"file": "lib/Controller.php",
+			"file": "index.php",
 			"settings":
 			{
-				"buffer_size": 412,
-				"line_ending": "Windows",
-				"name": "<?php"
-			}
-		},
-		{
-			"file": "view/header.php",
-			"settings":
-			{
-				"buffer_size": 2157,
+				"buffer_size": 354,
 				"line_ending": "Windows"
 			}
 		},
@@ -128,31 +154,7 @@
 			"file": "lib/View.php",
 			"settings":
 			{
-				"buffer_size": 840,
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"file": "view/footer.php",
-			"settings":
-			{
-				"buffer_size": 921,
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"file": "controller/index.php",
-			"settings":
-			{
-				"buffer_size": 209,
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"file": "view/index/index.php",
-			"settings":
-			{
-				"buffer_size": 22,
+				"buffer_size": 990,
 				"line_ending": "Windows"
 			}
 		}
@@ -160,7 +162,7 @@
 	"build_system": "",
 	"command_palette":
 	{
-		"height": 58.0,
+		"height": 81.0,
 		"selected_items":
 		[
 			[
@@ -193,12 +195,24 @@
 	},
 	"file_history":
 	[
+		"/C/xampp/htdocs/finances_mvc/views/login/index.html.php",
+		"/C/xampp/htdocs/finances_mvc/controllers/login.php",
+		"/C/xampp/htdocs/finances_mvc/libs/View.php",
+		"/C/xampp/htdocs/finances_mvc/index.php",
+		"/C/xampp/htdocs/CrowFinance/lib/Bootstrap.php",
+		"/C/xampp/htdocs/CrowFinance/view/footer.php",
+		"/C/xampp/htdocs/CrowFinance/controller/index.php",
+		"/C/xampp/htdocs/CrowFinance/config/config.ini",
+		"/C/xampp/htdocs/CrowFinance/view/index/index.php",
+		"/C/xampp/htdocs/CrowFinance/lib/View.php",
+		"/C/xampp/htdocs/CrowFinance/view/header.php",
+		"/C/xampp/htdocs/CrowFinance/lib/Controller.php",
+		"/C/xampp/htdocs/CrowFinance/lib/Session.php",
+		"/C/xampp/htdocs/CrowFinance/lib/User.php",
+		"/C/xampp/htdocs/CrowFinance/lib/Database.php",
 		"/C/xampp/htdocs/CrowFinance/index.php",
 		"/C/xampp/htdocs/CrowFinance/view/error/index.php",
-		"/C/xampp/htdocs/CrowFinance/config/config.ini",
 		"/C/xampp/htdocs/CrowFinance/lib/Config.php",
-		"/C/xampp/htdocs/CrowFinance/lib/View.php",
-		"/C/xampp/htdocs/CrowFinance/view/index/index.php",
 		"/C/xampp/htdocs/CrowFinance/controller/error.php",
 		"/C/xampp/htdocs/CrowFinance/README.md",
 		"/C/xampp/htdocs/CrowFinance/README",
@@ -211,8 +225,6 @@
 		"/C/xampp/htdocs/finances_mvc/old/controllers/index.php",
 		"/C/xampp/htdocs/finances_mvc/old/libs/Controller.php",
 		"/C/xampp/htdocs/finances_mvc/old/libs/View.php",
-		"/C/xampp/htdocs/CrowFinance/lib/Controller.php",
-		"/C/xampp/htdocs/CrowFinance/lib/Database.php",
 		"/C/xampp/htdocs/CrowFinance/.htaccess",
 		"/C/xampp/htdocs/CrowFinance/controllers/error.php",
 		"/C/xampp/htdocs/finances_mvc/old/index.php",
@@ -227,7 +239,6 @@
 		"/C/xampp/htdocs/mvc/lib/Database.php",
 		"/C/xampp/htdocs/finances_mvc/libs/Controller.php",
 		"/C/xampp/htdocs/finances_mvc/views/transactions/create.html.php",
-		"/C/xampp/htdocs/finances_mvc/views/login/index.html.php",
 		"/C/Users/Sam/Documents/GitHub/beard/README.markdown",
 		"/C/xampp/htdocs/finances_mvc/controllers/transactions.php",
 		"/C/Users/Sam/AppData/Local/Temp/fz3temp-1/myplugins.php",
@@ -287,7 +298,7 @@
 	"groups":
 	[
 		{
-			"selected": 8,
+			"selected": 5,
 			"sheets":
 			[
 				{
@@ -295,15 +306,15 @@
 					"file": "lib/Model.php",
 					"settings":
 					{
-						"buffer_size": 2117,
+						"buffer_size": 2360,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								1286,
-								1286
+								133,
+								133
 							]
 						],
 						"settings":
@@ -319,45 +330,46 @@
 				},
 				{
 					"buffer": 1,
-					"file": "lib/Database.php",
+					"file": "lib/Collection.php",
 					"settings":
 					{
-						"buffer_size": 437,
+						"buffer_size": 1835,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								0,
-								0
+								599,
+								599
 							]
 						],
 						"settings":
 						{
+							"auto_name": "<?php",
 							"syntax": "Packages/PHP/PHP.tmLanguage",
 							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 0.0,
+						"translation.y": 285.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
 				},
 				{
 					"buffer": 2,
-					"file": "lib/Bootstrap.php",
+					"file": "controller/index.php",
 					"settings":
 					{
-						"buffer_size": 1564,
+						"buffer_size": 338,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								504,
-								504
+								244,
+								244
 							]
 						],
 						"settings":
@@ -383,8 +395,8 @@
 						"selection":
 						[
 							[
-								74,
-								74
+								279,
+								279
 							]
 						],
 						"settings":
@@ -393,17 +405,71 @@
 							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 0.0,
+						"translation.y": 1140.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
 				},
 				{
 					"buffer": 4,
-					"file": "lib/Session.php",
+					"file": "controller/login.php",
 					"settings":
 					{
-						"buffer_size": 1572,
+						"buffer_size": 835,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								223,
+								223
+							]
+						],
+						"settings":
+						{
+							"auto_name": "<?php",
+							"syntax": "Packages/PHP/PHP.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 114.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 5,
+					"file": "view/login/index.php",
+					"settings":
+					{
+						"buffer_size": 897,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								869,
+								869
+							]
+						],
+						"settings":
+						{
+							"auto_name": "<p>Log in here!</p>",
+							"syntax": "Packages/PHP/PHP.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 6,
+					"file": "lib/Controller.php",
+					"settings":
+					{
+						"buffer_size": 412,
 						"regions":
 						{
 						},
@@ -426,73 +492,19 @@
 					"type": "text"
 				},
 				{
-					"buffer": 5,
-					"file": "lib/Controller.php",
-					"settings":
-					{
-						"buffer_size": 412,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								161,
-								161
-							]
-						],
-						"settings":
-						{
-							"auto_name": "<?php",
-							"syntax": "Packages/PHP/PHP.tmLanguage"
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 6,
-					"file": "view/header.php",
-					"settings":
-					{
-						"buffer_size": 2157,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								275,
-								275
-							]
-						],
-						"settings":
-						{
-							"auto_name": "",
-							"syntax": "Packages/PHP/PHP.tmLanguage"
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
 					"buffer": 7,
-					"file": "lib/View.php",
+					"file": "lib/Session.php",
 					"settings":
 					{
-						"buffer_size": 840,
+						"buffer_size": 1572,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								523,
-								523
+								0,
+								0
 							]
 						],
 						"settings":
@@ -501,25 +513,25 @@
 							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 0.0,
+						"translation.y": 1026.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
 				},
 				{
 					"buffer": 8,
-					"file": "view/footer.php",
+					"file": "index.php",
 					"settings":
 					{
-						"buffer_size": 921,
+						"buffer_size": 354,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								921,
-								921
+								228,
+								228
 							]
 						],
 						"settings":
@@ -527,59 +539,34 @@
 							"syntax": "Packages/PHP/PHP.tmLanguage"
 						},
 						"translation.x": 0.0,
-						"translation.y": 114.0,
+						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
 				},
 				{
 					"buffer": 9,
-					"file": "controller/index.php",
+					"file": "lib/View.php",
 					"settings":
 					{
-						"buffer_size": 209,
+						"buffer_size": 990,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								73,
-								73
+								990,
+								990
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/PHP/PHP.tmLanguage"
+							"syntax": "Packages/PHP/PHP.tmLanguage",
+							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 10,
-					"file": "view/index/index.php",
-					"settings":
-					{
-						"buffer_size": 22,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								22,
-								22
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/PHP/PHP.tmLanguage"
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
+						"translation.y": 513.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
@@ -593,7 +580,7 @@
 	},
 	"input":
 	{
-		"height": 0.0
+		"height": 35.0
 	},
 	"layout":
 	{
@@ -628,6 +615,26 @@
 		"height": 0.0,
 		"selected_items":
 		[
+			[
+				"view",
+				"lib/View.php"
+			],
+			[
+				"boots",
+				"lib/Bootstrap.php"
+			],
+			[
+				"sess",
+				"lib/Session.php"
+			],
+			[
+				"contr",
+				"lib/Controller.php"
+			],
+			[
+				"user",
+				"lib/User.php"
+			]
 		],
 		"width": 0.0
 	},
