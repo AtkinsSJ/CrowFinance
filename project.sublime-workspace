@@ -4,6 +4,10 @@
 		"selected_items":
 		[
 			[
+				"date",
+				"dateString"
+			],
+			[
 				"_sor",
 				"_sortDirection"
 			],
@@ -40,10 +44,6 @@
 				"categoryId"
 			],
 			[
-				"date",
-				"date"
-			],
-			[
 				"userId",
 				"userId"
 			],
@@ -76,85 +76,28 @@
 	"buffers":
 	[
 		{
-			"file": "lib/Model.php",
+			"file": "controller/transactions.php",
 			"settings":
 			{
-				"buffer_size": 2360,
-				"line_ending": "Windows"
+				"buffer_size": 699,
+				"line_ending": "Windows",
+				"name": "<?php"
+			}
+		},
+		{
+			"file": "view/transactions/view.php",
+			"settings":
+			{
+				"buffer_size": 93,
+				"line_ending": "Windows",
+				"name": "<pre><?php foreach ($this->transactions as $transa"
 			}
 		},
 		{
 			"file": "lib/Collection.php",
 			"settings":
 			{
-				"buffer_size": 1835,
-				"line_ending": "Windows",
-				"name": "<?php"
-			}
-		},
-		{
-			"file": "controller/index.php",
-			"settings":
-			{
-				"buffer_size": 338,
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"file": "lib/User.php",
-			"settings":
-			{
-				"buffer_size": 2397,
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"file": "controller/login.php",
-			"settings":
-			{
-				"buffer_size": 835,
-				"line_ending": "Windows",
-				"name": "<?php"
-			}
-		},
-		{
-			"file": "view/login/index.php",
-			"settings":
-			{
-				"buffer_size": 897,
-				"line_ending": "Windows",
-				"name": "<p>Log in here!</p>"
-			}
-		},
-		{
-			"file": "lib/Controller.php",
-			"settings":
-			{
-				"buffer_size": 412,
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"file": "lib/Session.php",
-			"settings":
-			{
-				"buffer_size": 1572,
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"file": "index.php",
-			"settings":
-			{
-				"buffer_size": 354,
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"file": "lib/View.php",
-			"settings":
-			{
-				"buffer_size": 990,
+				"buffer_size": 2280,
 				"line_ending": "Windows"
 			}
 		}
@@ -182,7 +125,7 @@
 	},
 	"console":
 	{
-		"height": 0.0
+		"height": 230.0
 	},
 	"distraction_free":
 	{
@@ -195,22 +138,26 @@
 	},
 	"file_history":
 	[
+		"/C/xampp/htdocs/CrowFinance/lib/Model.php",
+		"/C/xampp/htdocs/CrowFinance/lib/Collection.php",
+		"/C/xampp/htdocs/CrowFinance/controller/index.php",
+		"/C/xampp/htdocs/CrowFinance/lib/User.php",
+		"/C/xampp/htdocs/CrowFinance/controller/login.php",
+		"/C/xampp/htdocs/CrowFinance/view/login/index.php",
+		"/C/xampp/htdocs/CrowFinance/lib/Controller.php",
+		"/C/xampp/htdocs/CrowFinance/index.php",
+		"/C/xampp/htdocs/CrowFinance/lib/View.php",
+		"/C/xampp/htdocs/CrowFinance/lib/Session.php",
 		"/C/xampp/htdocs/finances_mvc/views/login/index.html.php",
 		"/C/xampp/htdocs/finances_mvc/controllers/login.php",
 		"/C/xampp/htdocs/finances_mvc/libs/View.php",
 		"/C/xampp/htdocs/finances_mvc/index.php",
 		"/C/xampp/htdocs/CrowFinance/lib/Bootstrap.php",
 		"/C/xampp/htdocs/CrowFinance/view/footer.php",
-		"/C/xampp/htdocs/CrowFinance/controller/index.php",
 		"/C/xampp/htdocs/CrowFinance/config/config.ini",
 		"/C/xampp/htdocs/CrowFinance/view/index/index.php",
-		"/C/xampp/htdocs/CrowFinance/lib/View.php",
 		"/C/xampp/htdocs/CrowFinance/view/header.php",
-		"/C/xampp/htdocs/CrowFinance/lib/Controller.php",
-		"/C/xampp/htdocs/CrowFinance/lib/Session.php",
-		"/C/xampp/htdocs/CrowFinance/lib/User.php",
 		"/C/xampp/htdocs/CrowFinance/lib/Database.php",
-		"/C/xampp/htdocs/CrowFinance/index.php",
 		"/C/xampp/htdocs/CrowFinance/view/error/index.php",
 		"/C/xampp/htdocs/CrowFinance/lib/Config.php",
 		"/C/xampp/htdocs/CrowFinance/controller/error.php",
@@ -279,6 +226,7 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"();\n",
 			"#content, #sidebar {\n		width: 100%;\n		float: none;\n	}",
 			" ======== */"
 		],
@@ -298,29 +246,29 @@
 	"groups":
 	[
 		{
-			"selected": 5,
+			"selected": 0,
 			"sheets":
 			[
 				{
 					"buffer": 0,
-					"file": "lib/Model.php",
+					"file": "controller/transactions.php",
 					"settings":
 					{
-						"buffer_size": 2360,
+						"buffer_size": 699,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								133,
-								133
+								548,
+								548
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/PHP/PHP.tmLanguage",
-							"translate_tabs_to_spaces": false
+							"auto_name": "<?php",
+							"syntax": "Packages/PHP/PHP.tmLanguage"
 						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,
@@ -330,181 +278,45 @@
 				},
 				{
 					"buffer": 1,
-					"file": "lib/Collection.php",
+					"file": "view/transactions/view.php",
 					"settings":
 					{
-						"buffer_size": 1835,
+						"buffer_size": 93,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								599,
-								599
+								93,
+								93
 							]
 						],
 						"settings":
 						{
-							"auto_name": "<?php",
-							"syntax": "Packages/PHP/PHP.tmLanguage",
-							"translate_tabs_to_spaces": false
+							"auto_name": "<pre><?php foreach ($this->transactions as $transa",
+							"syntax": "Packages/PHP/PHP.tmLanguage"
 						},
 						"translation.x": 0.0,
-						"translation.y": 285.0,
+						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
 				},
 				{
 					"buffer": 2,
-					"file": "controller/index.php",
+					"file": "lib/Collection.php",
 					"settings":
 					{
-						"buffer_size": 338,
+						"buffer_size": 2280,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								244,
-								244
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/PHP/PHP.tmLanguage",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 3,
-					"file": "lib/User.php",
-					"settings":
-					{
-						"buffer_size": 2397,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								279,
-								279
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/PHP/PHP.tmLanguage",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 1140.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 4,
-					"file": "controller/login.php",
-					"settings":
-					{
-						"buffer_size": 835,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								223,
-								223
-							]
-						],
-						"settings":
-						{
-							"auto_name": "<?php",
-							"syntax": "Packages/PHP/PHP.tmLanguage"
-						},
-						"translation.x": 0.0,
-						"translation.y": 114.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 5,
-					"file": "view/login/index.php",
-					"settings":
-					{
-						"buffer_size": 897,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								869,
-								869
-							]
-						],
-						"settings":
-						{
-							"auto_name": "<p>Log in here!</p>",
-							"syntax": "Packages/PHP/PHP.tmLanguage"
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 6,
-					"file": "lib/Controller.php",
-					"settings":
-					{
-						"buffer_size": 412,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								0,
-								0
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/PHP/PHP.tmLanguage",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 7,
-					"file": "lib/Session.php",
-					"settings":
-					{
-						"buffer_size": 1572,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								0,
-								0
+								1866,
+								1866
 							]
 						],
 						"settings":
@@ -514,59 +326,6 @@
 						},
 						"translation.x": 0.0,
 						"translation.y": 1026.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 8,
-					"file": "index.php",
-					"settings":
-					{
-						"buffer_size": 354,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								228,
-								228
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/PHP/PHP.tmLanguage"
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 9,
-					"file": "lib/View.php",
-					"settings":
-					{
-						"buffer_size": 990,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								990,
-								990
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/PHP/PHP.tmLanguage",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 513.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
@@ -615,6 +374,10 @@
 		"height": 0.0,
 		"selected_items":
 		[
+			[
+				"collection",
+				"lib/Collection.php"
+			],
 			[
 				"view",
 				"lib/View.php"

@@ -1,9 +1,10 @@
 <?php
 
-class Collection { // implements Countable, ArrayAccess {
+class Collection implements Countable, Iterator {
 	
 	private $_table;
-	public $_models = array();
+	private $_models = array();
+	private $_position = 0; // Array iterator
 
 	private $_conditions = array();
 	private $_parameters = array();
@@ -74,5 +75,31 @@ class Collection { // implements Countable, ArrayAccess {
 		}
 
 		return $this; // Chaining
+	}
+
+// COUNTABLE
+	public function count() {
+		return count($this->_models);
+	}
+
+// ITERATOR
+	public function rewind() {
+		$this->_position = 0;
+	}
+
+	public function current() {
+		return $this->_models[$this->_position];
+	}
+
+	public function key() {
+		return $this->_position;
+	}
+
+	public function next() {
+		$this->_position++;
+	}
+
+	public function valid() {
+		return isset($this->_models[$this->_position]);
 	}
 }
