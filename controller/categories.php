@@ -63,4 +63,30 @@ class Categories extends Controller {
 		$this->view->category = $category;
 		$this->view->render('edit');
 	}
+
+	public function delete($id) {
+
+		$category = new Model('categories');
+		try {
+			$category->load($id);
+		} catch (Exception $ex) {
+			Session::pushMessage('That category does not exist.', Message::ERROR);
+			redirect('categories');
+			return;
+		}
+
+		if (isset($_POST['sure'])) {
+			try {
+				$name = $category->get('name');
+				$category->delete();
+				Session::pushMessage("Category '{$name}' was deleted successfully.", Message::SUCCESS);
+				redirect('categories');
+			} catch (Exception $e) {
+				$this->view->pushMessage('Could not delete category: ' . $e->getMessage(), Message::ERROR);
+			}
+		}
+
+		$this->view->category = $category;
+		$this->view->render('delete');
+	}
 }

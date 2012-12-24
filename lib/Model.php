@@ -7,7 +7,7 @@ class Model {
 	private $_table;
 
 	private static $db = null;
-	private static $userId;
+	private static $userId = null;
 
 	/**
 	 * Empty constructor. Just initialises base state.
@@ -119,6 +119,14 @@ class Model {
 	 * Save the state of the model to the database
 	 */
 	public function save() {
+
+		if ($this->_id == null) {
+			throw new ModelException('Attempting to save a model which has no id.');
+		}
+		if (Model::$userId == null) {
+			throw new ModelException('Attempting to save a model when no userID set.');
+		}
+
 		$db = Model::$db;
 		$query = "UPDATE {$db->tablePrefix}{$this->_table}
 			SET ";
@@ -142,4 +150,28 @@ class Model {
 			throw new DatabaseException('Failed to save record.', $query, $stmt->errorInfo());
 		}
 	}
+
+	public function delete() {
+
+		if ($this->_id == null) {
+			throw new ModelException('Attempting to delete a model which has no id.');
+		}
+		if (Model::$userId == null) {
+			throw new ModelException('Attempting to delete a model when no userID set.');
+		}
+
+		$db = Model::$db;
+		$query = "DELETE FROM {$db->tablePrefix}{$this->_table}
+			WHERE id = :id AND user_id = :userId
+			LIMIT 1";
+
+		$stmt = $db->prepare($query);
+		if ($stmt->execute(array( 'id' => $this->_id, 'userId' => Model::$userId ))) {
+			return;
+		} else {
+			throw new DatabaseException('Could not delete record.', $query, $stmt->errorInfo());
+		}
+	}
 }
+
+class ModelException extends Exception { }

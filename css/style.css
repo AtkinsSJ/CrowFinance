@@ -121,6 +121,9 @@ input[type=tel] { background-image: url(../img/telephone.png); }
 .block.form .formLine.buttons {
 	border-top: 2px solid $( deep-blue );
 }
+.block.form .formLine.buttons:first-child {
+	border-top: none;
+}
 
 /* ====== Lists ====== */
 .navList {
@@ -310,7 +313,7 @@ table p {
 .statement tbody tr:hover {
 	background-color: $( pale-blue );
 }
-.description {
+.statement .description {
 	width: 100%;
 	display: inline-block;
 	height: 1.7em;
@@ -321,7 +324,7 @@ table p {
 	padding-right: 1.5em;
 	margin-right: -1.5em;
 }
-.description.expanded {
+.statement .description.expanded {
 	height: auto;
 	white-space: normal;
 	margin: 0;
