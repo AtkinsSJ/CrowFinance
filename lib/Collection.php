@@ -40,6 +40,32 @@ class Collection implements Countable, Iterator {
 		return $this;
 	}
 
+	/**
+	 * Runs a custom query using the filters.
+	 */
+	public function customSelect($target) {
+		$db = Model::getDatabase();
+		$query = "SELECT {$target}
+			FROM {$db->tablePrefix}{$this->_table}
+			";
+
+		// WHERE clause
+		if (count($this->_conditions) > 0) {
+			$conditions = implode($this->_conditions, ' AND ');
+			$query .= ' WHERE ' . $conditions;
+		}
+
+		$stmt = $db->prepare($query);
+		if ( $stmt->execute($this->_parameters) ) {
+			return $stmt->fetchAll(PDO::FETCH_ASSOC);
+		} else {
+			throw new DatabaseException('Error in customSelect()', $query, $stmt->errorInfo());
+		}
+	}
+
+	/**
+	 * Load all records that fit the current filters.
+	 */
 	public function load() {
 		$db = Model::getDatabase();
 		$query = "SELECT *
@@ -70,8 +96,7 @@ class Collection implements Countable, Iterator {
 				$this->_models[] = Model::createPopulated($this->_table, $record['id'], $record);
 			}
 		} else {
-			$err = print_r($stmt->errorInfo(), true);
-			throw new Exception( 'Could not load database data for a records: ' . $err);
+			throw new DatabaseException('Could not load database data for records', $query, $stmt->errorInfo());
 		}
 
 		return $this; // Chaining

@@ -59,7 +59,7 @@ class Model {
 	 */
 	public function load($id) {
 		$db = Model::$db;
-		$stmt = Model::$db->prepare(
+		$stmt = $db->prepare(
 			"SELECT *
 			FROM {$db->tablePrefix}{$this->_table}
 			WHERE id = :id
@@ -70,13 +70,12 @@ class Model {
 									'userId' => Model::$userId) ) ) {
 			$result = $stmt->fetch(PDO::FETCH_ASSOC);
 			if (!$result) {
-				throw new Exception('Record does not exist.');
+				throw new DatabaseException('Record does not exist', $query, $stmt->errorInfo());
 			}
 			$this->_id = $id;
 			$this->setMultiple($result);
 		} else {
-			$err = print_r($stmt->errorInfo(), true);
-			throw new Exception( 'Could not load database data for a record: ' . $err);
+			throw new DatabaseException('Could not load a record', $query, $stmt->errorInfo());
 		}
 
 		return $this; // Chaining
@@ -112,6 +111,35 @@ class Model {
 	 * Returns the value of a given field
 	 */
 	public function get($field) {
+		if ($field == 'id') { return $this->_id; }
 		return $this->_fields[$field];
+	}
+
+	/**
+	 * Save the state of the model to the database
+	 */
+	public function save() {
+		$db = Model::$db;
+		$query = "UPDATE {$db->tablePrefix}{$this->_table}
+			SET ";
+
+		$parts = array();
+		foreach ($this->_fields as $field => $value) {
+			$parts[] = "{$field} = :{$field}";
+		}
+		$query .= implode(', ', $parts);
+
+		$query .= " WHERE id = :id
+			LIMIT 1";
+
+		$params = $this->_fields;
+		$params['id'] = $this->_id;
+
+		$stmt = $db->prepare($query);
+		if ( $stmt->execute( $params ) ) {
+			return;
+		} else {
+			throw new DatabaseException('Failed to save record.', $query, $stmt->errorInfo());
+		}
 	}
 }

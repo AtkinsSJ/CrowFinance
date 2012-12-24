@@ -16,3 +16,14 @@ class Database extends PDO {
 	}
 	
 }
+
+class DatabaseException extends Exception {
+	public $query;
+	public $errorInfo;
+
+	public function __construct($message, $query, $errorInfo) {
+		parent::__construct($message);
+		$this->query = $query;
+		$this->errorInfo = $errorInfo;
+	}
+}

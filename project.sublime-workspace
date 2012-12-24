@@ -4,6 +4,22 @@
 		"selected_items":
 		[
 			[
+				"table",
+				"tablePrefix"
+			],
+			[
+				"previous",
+				"previousDate"
+			],
+			[
+				"next",
+				"nextDate"
+			],
+			[
+				"tota",
+				"totalIn"
+			],
+			[
 				"date",
 				"dateString"
 			],
@@ -79,7 +95,7 @@
 			"file": "controller/transactions.php",
 			"settings":
 			{
-				"buffer_size": 699,
+				"buffer_size": 2962,
 				"line_ending": "Windows",
 				"name": "<?php"
 			}
@@ -88,26 +104,78 @@
 			"file": "view/transactions/view.php",
 			"settings":
 			{
-				"buffer_size": 93,
+				"buffer_size": 1967,
 				"line_ending": "Windows",
 				"name": "<pre><?php foreach ($this->transactions as $transa"
 			}
 		},
 		{
+			"contents": "<?php\n\nclass Collection implements Countable, Iterator {\n	\n	private $_table;\n	private $_models = array();\n	private $_position = 0; // Array iterator\n\n	private $_conditions = array();\n	private $_parameters = array();\n	private $_sortField;\n	private $_sortDirection;\n	private $_limit;\n	private $_offset;\n\n	public function __construct($table) {\n		$this->_table = $table;\n		$this->filter(\"user_id = :userId\",\n				array('userId' => Model::getUserId()));\n	}\n\n	public function filter($condition, $parameters=array()) {\n		$this->_conditions[] = $condition;\n		$this->_parameters = array_merge($this->_parameters, $parameters);\n		\n		return $this;\n	}\n\n	public function sortBy($field, $direction) {\n		$this->_sortField = $field;\n		$this->_sortDirection = $direction;\n\n		return $this;\n	}\n\n	public function page($pageNumber, $perPage) {\n		$this->_limit = $perPage;\n		$this->_offset = $perPage * ($pageNumber-1);\n\n		return $this;\n	}\n\n	/**\n	 * Runs a COUNT() query using the filters\n	 */\n	public function countValidRecords() {\n		$db = Model::getDatabase();\n		$query = \"SELECT COUNT(id)\n			FROM ($db->tablePrefix}{$this->_table}\n			\";\n\n		// WHERE clause\n		if (count($this->_conditions) > 0) {\n			$conditions = implode($this->_conditions, ' AND ');\n			$query .= ' WHERE ' . $conditions;\n		}\n\n		$stmt = $db->prepare($query);\n		if ( $stmt->execute($this->_parameters) ) {\n			\n		}\n	}\n\n	/**\n	 * Load all records that fit the current filters.\n	 */\n	public function load() {\n		$db = Model::getDatabase();\n		$query = \"SELECT *\n			FROM {$db->tablePrefix}{$this->_table}\n			\";\n\n		// WHERE clause\n		if (count($this->_conditions) > 0) {\n			$conditions = implode($this->_conditions, ' AND ');\n			$query .= ' WHERE ' . $conditions;\n		}\n\n		// ORDER BY clause\n		if ($this->_sortField) {\n			$query .= \" ORDER BY {$this->_sortField} {$this->_sortDirection} \";\n		}\n\n		// LIMIT OFFSET clause\n		if ($this->_limit) {\n			$query .= \" LIMIT {$this->_limit} OFFSET {$this->_offset} \";\n		}\n		\n		$stmt = $db->prepare( $query );\n\n		if ( $stmt->execute( $this->_parameters ) ) {\n			$result = $stmt->fetchAll(PDO::FETCH_ASSOC);\n			foreach ($result as $record) {\n				$this->_models[] = Model::createPopulated($this->_table, $record['id'], $record);\n			}\n		} else {\n			$err = print_r($stmt->errorInfo(), true);\n			throw new Exception( 'Could not load database data for a records: ' . $err);\n		}\n\n		return $this; // Chaining\n	}\n\n// COUNTABLE\n	public function count() {\n		return count($this->_models);\n	}\n\n// ITERATOR\n	public function rewind() {\n		$this->_position = 0;\n	}\n\n	public function current() {\n		return $this->_models[$this->_position];\n	}\n\n	public function key() {\n		return $this->_position;\n	}\n\n	public function next() {\n		$this->_position++;\n	}\n\n	public function valid() {\n		return isset($this->_models[$this->_position]);\n	}\n}",
 			"file": "lib/Collection.php",
+			"file_size": 2448,
+			"file_write_time": 130006724495224609,
 			"settings":
 			{
-				"buffer_size": 2280,
+				"buffer_size": 2786,
 				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "lib/Model.php",
+			"settings":
+			{
+				"buffer_size": 2360,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "controller/categories.php",
+			"settings":
+			{
+				"buffer_size": 314,
+				"line_ending": "Windows",
+				"name": "<?php"
+			}
+		},
+		{
+			"contents": "<table>\n	<thead>\n		<tr>\n			<th></th>\n			<th></th>\n			<th></th>\n		</tr>\n	</thead>\n	<tfoot>\n		<tr>\n			<td></td>\n			<td></td>\n			<td></td>\n		</tr>\n	</tfoot>\n	<tbody>\n		<tr>\n			<td></td>\n			<td></td>\n			<td></td>\n		</tr>\n	</tbody>\n</table>",
+			"file": "view/categories/index.php",
+			"file_size": 48,
+			"file_write_time": 130006712016757812,
+			"settings":
+			{
+				"buffer_size": 235,
+				"line_ending": "Windows",
+				"name": "<pre><?php print_r($this->categories); ?> </pre>"
 			}
 		}
 	],
 	"build_system": "",
 	"command_palette":
 	{
-		"height": 81.0,
+		"height": 380.0,
 		"selected_items":
 		[
+			[
+				"pack",
+				"Package Control: Discover Packages"
+			],
+			[
+				"package",
+				"Package Control: List Packages"
+			],
+			[
+				"insta",
+				"Package Control: Install Package"
+			],
+			[
+				"install",
+				"Package Control: Install Package"
+			],
+			[
+				"php",
+				"Set Syntax: PHP"
+			],
 			[
 				"ssphp",
 				"Set Syntax: PHP"
@@ -121,7 +189,7 @@
 				"Snippet: Start Docblock"
 			]
 		],
-		"width": 392.0
+		"width": 512.0
 	},
 	"console":
 	{
@@ -138,9 +206,9 @@
 	},
 	"file_history":
 	[
+		"/C/xampp/htdocs/CrowFinance/controller/index.php",
 		"/C/xampp/htdocs/CrowFinance/lib/Model.php",
 		"/C/xampp/htdocs/CrowFinance/lib/Collection.php",
-		"/C/xampp/htdocs/CrowFinance/controller/index.php",
 		"/C/xampp/htdocs/CrowFinance/lib/User.php",
 		"/C/xampp/htdocs/CrowFinance/controller/login.php",
 		"/C/xampp/htdocs/CrowFinance/view/login/index.php",
@@ -226,6 +294,7 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"\",\n",
 			"();\n",
 			"#content, #sidebar {\n		width: 100%;\n		float: none;\n	}",
 			" ======== */"
@@ -246,7 +315,7 @@
 	"groups":
 	[
 		{
-			"selected": 0,
+			"selected": 2,
 			"sheets":
 			[
 				{
@@ -254,21 +323,22 @@
 					"file": "controller/transactions.php",
 					"settings":
 					{
-						"buffer_size": 699,
+						"buffer_size": 2962,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								548,
-								548
+								123,
+								48
 							]
 						],
 						"settings":
 						{
 							"auto_name": "<?php",
-							"syntax": "Packages/PHP/PHP.tmLanguage"
+							"syntax": "Packages/PHP/PHP.tmLanguage",
+							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,
@@ -281,21 +351,22 @@
 					"file": "view/transactions/view.php",
 					"settings":
 					{
-						"buffer_size": 93,
+						"buffer_size": 1967,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								93,
-								93
+								1219,
+								1219
 							]
 						],
 						"settings":
 						{
 							"auto_name": "<pre><?php foreach ($this->transactions as $transa",
-							"syntax": "Packages/PHP/PHP.tmLanguage"
+							"syntax": "Packages/PHP/PHP.tmLanguage",
+							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,
@@ -308,15 +379,15 @@
 					"file": "lib/Collection.php",
 					"settings":
 					{
-						"buffer_size": 2280,
+						"buffer_size": 2786,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								1866,
-								1866
+								1923,
+								1923
 							]
 						],
 						"settings":
@@ -326,6 +397,88 @@
 						},
 						"translation.x": 0.0,
 						"translation.y": 1026.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "lib/Model.php",
+					"settings":
+					{
+						"buffer_size": 2360,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/PHP/PHP.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 1425.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 4,
+					"file": "controller/categories.php",
+					"settings":
+					{
+						"buffer_size": 314,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								309,
+								309
+							]
+						],
+						"settings":
+						{
+							"auto_name": "<?php",
+							"syntax": "Packages/PHP/PHP.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 5,
+					"file": "view/categories/index.php",
+					"settings":
+					{
+						"buffer_size": 235,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								135,
+								135
+							]
+						],
+						"settings":
+						{
+							"auto_name": "<pre><?php print_r($this->categories); ?> </pre>",
+							"syntax": "Packages/PHP/PHP.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
@@ -375,6 +528,10 @@
 		"selected_items":
 		[
 			[
+				"model",
+				"lib/Model.php"
+			],
+			[
 				"collection",
 				"lib/Collection.php"
 			],
@@ -412,7 +569,7 @@
 	"show_minimap": true,
 	"show_open_files": false,
 	"show_tabs": true,
-	"side_bar_visible": true,
-	"side_bar_width": 229.0,
+	"side_bar_visible": false,
+	"side_bar_width": 207.0,
 	"status_bar_visible": true
 }
