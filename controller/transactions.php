@@ -3,7 +3,7 @@
 class Transactions extends Controller {
 	
 	public function __construct() {
-		parent::__construct('transactions');
+		parent::__construct('transactions', true);
 	}
 
 	public function view($dateString) {
