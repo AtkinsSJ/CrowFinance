@@ -13,7 +13,7 @@
 			</div>
 
 			<div class="formLine buttons">
-				<a class="button left" href="categories">Cancel</a>
+				<a class="button left" href="thirdparties">Cancel</a>
 				<button type="submit" class="button primary right">Save</button>
 			</div>
 		</form>
