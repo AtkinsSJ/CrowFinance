@@ -121,6 +121,10 @@ class Categories extends Controller {
 
 		if (isset($_POST['sure'])) {
 			try {
+				$transactions = new Collection('transactions');
+				$transacations->filter('category_id = :catId', array('catId' => $id));
+				$transactions->update(array('category_id' => 0));
+
 				$name = $category->get('name');
 				$category->delete();
 				Session::pushMessage("Category '{$name}' was deleted successfully.", Message::SUCCESS);
