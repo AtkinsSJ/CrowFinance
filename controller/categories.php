@@ -38,6 +38,23 @@ class Categories extends Controller {
 		$this->render('index');
 	}
 
+	public function create() {
+
+		if (isset($_POST['name'])) {
+			$category = new Model('categories');
+			$category->set('name', $_POST['name']);
+			try {
+				$category->save();
+				Session::pushMessage("Successfully created new Category: '{$_POST['name']}", Message::SUCCESS);
+				redirect('categories');
+			} catch (DatabaseException $e) {
+				$this->view->pushMessage('Could not create new category.', Message::ERROR);
+			}
+		}
+
+		$this->render('create');
+	}
+
 	public function edit($id) {
 		$category = new Model('categories');
 		try {

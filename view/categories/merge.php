@@ -11,7 +11,7 @@
 		<form action="categories/merge/<?= $this->category->get('id') ?>" method="post">
 			<div class="formLine">
 				<label for="target">Target category</label>
-				<select name="target" id="target">
+				<select name="merge" id="target">
 					<?php foreach ($this->categories as $category): ?>
 						<option value="<?= $category->get('id') ?>"><?= $category->get('name') ?></option>
 					<?php endforeach; ?>

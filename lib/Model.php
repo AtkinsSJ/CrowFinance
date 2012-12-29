@@ -120,11 +120,13 @@ class Model {
 	 */
 	public function save() {
 
-		if ($this->_id == null) {
-			throw new ModelException('Attempting to save a model which has no id.');
-		}
 		if (Model::$userId == null) {
 			throw new ModelException('Attempting to save a model when no userID set.');
+		}
+
+		if ($this->_id == null) {
+			// Record does not exist, so create a new one!
+			return $this->_saveNew();
 		}
 
 		$db = Model::$db;
@@ -148,6 +150,29 @@ class Model {
 			return;
 		} else {
 			throw new DatabaseException('Failed to save record.', $query, $stmt->errorInfo());
+		}
+	}
+
+	private function _saveNew() {
+		$db = Model::$db;
+		$query = "INSERT INTO {$db->tablePrefix}{$this->_table} ";
+
+		$fields = $this->_fields;
+		$fields['user_id'] = Model::$userId;
+
+		$query .= '(' . implode(', ', array_keys($fields)) . ')';
+
+		$values = array();
+		foreach(array_keys($fields) as $field) {
+			$values[] = ':' . $field;
+		}
+		$query .= ' VALUES (' . implode(', ', $values) . ')';
+		
+		$stmt = $db->prepare($query);
+		if ($stmt->execute($fields)) {
+			return true;
+		} else {
+			throw new DatabaseException('Could not create new record.', $query. $stmt->errorInfo());
 		}
 	}
 

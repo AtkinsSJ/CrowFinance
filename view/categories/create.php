@@ -1,11 +1,16 @@
 <div class="block form">
-	<h2 class="title">Edit Category</h2>
+	<h2 class="title">Create New Category</h2>
 
 	<div class="content">
-		<form action="categories/edit/<?= $this->category->get('id') ?>" method="post">
+		<div class="description">
+			<p>
+				Create a category to organise your transactions.
+			</p>
+		</div>
+		<form action="categories/create" method="post">
 			<div class="formLine">
 				<label for="name">Name</label>
-				<input type="text" id="name" name="name" required value="<?= $this->category->get('name') ?>"/>
+				<input type="text" id="name" name="name" required/>
 			</div>
 
 			<div class="formLine buttons">

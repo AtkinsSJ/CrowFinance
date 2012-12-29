@@ -12,6 +12,13 @@
 		</tr>
 	</thead>
 
+	<tfoot>
+		<tr>
+			<td colspan="4"></td>
+			<td><a href="categories/create" class="button primary right">Create new Category</a></td>
+		</tr>
+	</tfoot>
+
 	<tbody>
 		<?php foreach ($this->categories as $category): ?>
 		<tr>
