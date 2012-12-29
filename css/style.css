@@ -36,12 +36,17 @@ input[type=email],
 input[type=url],
 input[type=tel],
 input[type=color],
-select,
-textarea {
+select {
 	border: 1px solid #aaa;
 	padding: 3px;
 	border-radius: 4px;
 	width: 200px;
+}
+
+textarea {
+	border: 1px solid #aaa;
+	padding: 3px;
+	border-radius: 4px;
 }
 
 /* Inputs that have icons in */
@@ -375,6 +380,11 @@ table .ralign {
 .formLine select,
 .formLine .chzn-container {
 	float: right;
+}
+
+.formLine textarea {
+	margin: 0 auto;
+	display: block;
 }
 
 /* Fix floated inputs breaking chosen. */

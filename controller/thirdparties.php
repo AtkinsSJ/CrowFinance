@@ -37,4 +37,53 @@ class ThirdParties extends Controller {
 		$this->view->currency = Config::get('user', 'currency');
 		$this->render('index');
 	}
+
+	public function create() {
+
+		$thirdParty = new Model('thirdparties');
+
+		if (isset($_POST['name'])) {
+			$thirdParty->set('name', $_POST['name']);
+			$thirdParty->set('description', $_POST['description']);
+
+			try {
+				$thirdParty->save();
+				Session::pushMessage("Successfully created new Third Party, '{$thirdParty->get('name')}'", Message::SUCCESS);
+				redirect('thirdparties');
+			} catch (DatabaseException $e) {
+				$this->view->pushMessage('Could not create new Third Party.', Message::ERROR);
+			}
+		}
+
+		$this->view->thirdParty = $thirdParty;
+		$this->render('create');
+	}
+
+	public function edit($id) {
+
+		$thirdParty = new Model('thirdparties');
+		try {
+			$thirdParty->load($id);
+		} catch (DatabaseException $e) {
+			Session::pushMessage('The third party you requested does not exist.', Message::ERROR);
+			redirect('thirdparties');
+			return;
+		}
+
+		if (isset($_POST['name'])) {
+			$thirdParty->set('name', $_POST['name']);
+			$thirdParty->set('description', $_POST['description']);
+
+			try {
+				$thirdParty->save();
+				Session::pushMessage("Successfully saved the Third Party, '{$thirdParty->get('name')}'", Message::SUCCESS);
+				redirect('thirdparties');
+			} catch (DatabaseException $e) {
+				$this->view->pushMessage('Could not save the Third Party.', Message::ERROR);
+			}
+		}
+
+		$this->view->thirdParty = $thirdParty;
+		$this->render('edit');
+	}
 }

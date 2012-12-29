@@ -112,7 +112,12 @@ class Model {
 	 */
 	public function get($field) {
 		if ($field == 'id') { return $this->_id; }
-		return $this->_fields[$field];
+		
+		if (array_key_exists($field, $this->_fields)) {
+			return $this->_fields[$field];
+		} else {
+			return '';
+		}
 	}
 
 	/**
