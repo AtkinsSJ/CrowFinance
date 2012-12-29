@@ -26,7 +26,7 @@ class Collection implements Countable, Iterator {
 		return $this;
 	}
 
-	public function sortBy($field, $direction) {
+	public function sortBy($field, $direction='ASC') {
 		$this->_sortField = $field;
 		$this->_sortDirection = $direction;
 
@@ -100,6 +100,31 @@ class Collection implements Countable, Iterator {
 		}
 
 		return $this; // Chaining
+	}
+
+	/**
+	 * Update all records that fit the current filters
+	 */
+	public function update(Array $changes) {
+		$db = Model::getDatabase();
+		$query = "UPDATE {$db->tablePrefix}{$this->_table}
+			SET ";
+
+		$updates = array();
+		$params = $this->_parameters;
+		foreach ($changes as $key => $value) {
+			$updates[] = "{$key} = :{$key}";
+			$params[$key] = $value;
+		}
+		$query .= implode(', ', $updates);
+
+		// WHERE clause
+		if (count($this->_conditions) > 0) {
+			$conditions = implode($this->_conditions, ' AND ');
+			$query .= ' WHERE ' . $conditions;
+		}
+
+		echo $query;
 	}
 
 // COUNTABLE

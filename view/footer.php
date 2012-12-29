@@ -9,7 +9,12 @@
 				
 				<nav class="unit lastUnit">
 					<ul class="navList footerNavList">
-						<li><a href="about">About</a></li>
+						<li>
+							<a href="help">Help</a>
+						</li>
+						<li>
+							<a href="about">About</a>
+						</li>
 					</ul>
 				</nav>
 			</div>

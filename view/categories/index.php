@@ -22,6 +22,7 @@
 			<td>
 				<div class="buttonGroup">
 					<a href="categories/edit/<?= $category->get('id') ?>" class="button edit">Edit</a>
+					<a href="categories/merge/<?= $category->get('id') ?>" class="button">Merge</a>
 					<a href="categories/delete/<?= $category->get('id') ?>" class="button delete">Delete</a>
 				</div>
 			</td>

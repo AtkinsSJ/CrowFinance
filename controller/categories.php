@@ -61,7 +61,51 @@ class Categories extends Controller {
 		}
 
 		$this->view->category = $category;
-		$this->view->render('edit');
+		$this->render('edit');
+	}
+
+	public function merge($id) {
+
+		$category = new Model('categories');
+		$category->load($id);
+
+		if (isset($_POST['merge'])) {
+
+			$target = new Model('categories');
+			$loaded = false;
+			try {
+				$target->load($_POST['merge']);
+				$loaded = true;
+			} catch (DatabaseException $e) {
+				$this->view->pushMessage('The target category does not exist!', Message::ERROR);
+			}
+
+			if ($loaded) {
+				try {
+					// Move transactions over
+					$transactions = new Collection('transactions');
+					$transactions->filter('category_id = :categoryId', array('categoryId' => $id));
+					$transactions->update(array('category_id' => $_POST['merge']));
+
+					// Delete the category
+					$category->delete();
+
+					Session::pushMessage("The category '{$category->get('name')}' has been successfully merged into '{$target->get('name')}.", Message::SUCCESS);
+					redirect('categories');
+				} catch (DatabaseException $e) {
+					$this->view->pushMessage('Something went wrong and the category could not be merged.', Message::ERROR);
+				}
+			}
+		}
+		// Get a list of categories
+		$categories = new Collection('categories');
+		$categories->filter('id != :id', array('id' => $id))
+					->sortBy('name', 'ASC')
+					->load();
+
+		$this->view->category = $category;
+		$this->view->categories = $categories;
+		$this->render('merge');
 	}
 
 	public function delete($id) {
@@ -87,6 +131,6 @@ class Categories extends Controller {
 		}
 
 		$this->view->category = $category;
-		$this->view->render('delete');
+		$this->render('delete');
 	}
 }

@@ -4,6 +4,18 @@
 		"selected_items":
 		[
 			[
+				"_p",
+				"_parameters"
+			],
+			[
+				"Data",
+				"DatabaseException"
+			],
+			[
+				"trans",
+				"transactionCount"
+			],
+			[
 				"table",
 				"tablePrefix"
 			],
@@ -95,7 +107,7 @@
 			"file": "controller/transactions.php",
 			"settings":
 			{
-				"buffer_size": 2962,
+				"buffer_size": 2968,
 				"line_ending": "Windows",
 				"name": "<?php"
 			}
@@ -110,13 +122,10 @@
 			}
 		},
 		{
-			"contents": "<?php\n\nclass Collection implements Countable, Iterator {\n	\n	private $_table;\n	private $_models = array();\n	private $_position = 0; // Array iterator\n\n	private $_conditions = array();\n	private $_parameters = array();\n	private $_sortField;\n	private $_sortDirection;\n	private $_limit;\n	private $_offset;\n\n	public function __construct($table) {\n		$this->_table = $table;\n		$this->filter(\"user_id = :userId\",\n				array('userId' => Model::getUserId()));\n	}\n\n	public function filter($condition, $parameters=array()) {\n		$this->_conditions[] = $condition;\n		$this->_parameters = array_merge($this->_parameters, $parameters);\n		\n		return $this;\n	}\n\n	public function sortBy($field, $direction) {\n		$this->_sortField = $field;\n		$this->_sortDirection = $direction;\n\n		return $this;\n	}\n\n	public function page($pageNumber, $perPage) {\n		$this->_limit = $perPage;\n		$this->_offset = $perPage * ($pageNumber-1);\n\n		return $this;\n	}\n\n	/**\n	 * Runs a COUNT() query using the filters\n	 */\n	public function countValidRecords() {\n		$db = Model::getDatabase();\n		$query = \"SELECT COUNT(id)\n			FROM ($db->tablePrefix}{$this->_table}\n			\";\n\n		// WHERE clause\n		if (count($this->_conditions) > 0) {\n			$conditions = implode($this->_conditions, ' AND ');\n			$query .= ' WHERE ' . $conditions;\n		}\n\n		$stmt = $db->prepare($query);\n		if ( $stmt->execute($this->_parameters) ) {\n			\n		}\n	}\n\n	/**\n	 * Load all records that fit the current filters.\n	 */\n	public function load() {\n		$db = Model::getDatabase();\n		$query = \"SELECT *\n			FROM {$db->tablePrefix}{$this->_table}\n			\";\n\n		// WHERE clause\n		if (count($this->_conditions) > 0) {\n			$conditions = implode($this->_conditions, ' AND ');\n			$query .= ' WHERE ' . $conditions;\n		}\n\n		// ORDER BY clause\n		if ($this->_sortField) {\n			$query .= \" ORDER BY {$this->_sortField} {$this->_sortDirection} \";\n		}\n\n		// LIMIT OFFSET clause\n		if ($this->_limit) {\n			$query .= \" LIMIT {$this->_limit} OFFSET {$this->_offset} \";\n		}\n		\n		$stmt = $db->prepare( $query );\n\n		if ( $stmt->execute( $this->_parameters ) ) {\n			$result = $stmt->fetchAll(PDO::FETCH_ASSOC);\n			foreach ($result as $record) {\n				$this->_models[] = Model::createPopulated($this->_table, $record['id'], $record);\n			}\n		} else {\n			$err = print_r($stmt->errorInfo(), true);\n			throw new Exception( 'Could not load database data for a records: ' . $err);\n		}\n\n		return $this; // Chaining\n	}\n\n// COUNTABLE\n	public function count() {\n		return count($this->_models);\n	}\n\n// ITERATOR\n	public function rewind() {\n		$this->_position = 0;\n	}\n\n	public function current() {\n		return $this->_models[$this->_position];\n	}\n\n	public function key() {\n		return $this->_position;\n	}\n\n	public function next() {\n		$this->_position++;\n	}\n\n	public function valid() {\n		return isset($this->_models[$this->_position]);\n	}\n}",
 			"file": "lib/Collection.php",
-			"file_size": 2448,
-			"file_write_time": 130006724495224609,
 			"settings":
 			{
-				"buffer_size": 2786,
+				"buffer_size": 3478,
 				"line_ending": "Windows"
 			}
 		},
@@ -124,7 +133,7 @@
 			"file": "lib/Model.php",
 			"settings":
 			{
-				"buffer_size": 2360,
+				"buffer_size": 3894,
 				"line_ending": "Windows"
 			}
 		},
@@ -132,21 +141,82 @@
 			"file": "controller/categories.php",
 			"settings":
 			{
-				"buffer_size": 314,
+				"buffer_size": 3735,
 				"line_ending": "Windows",
 				"name": "<?php"
 			}
 		},
 		{
-			"contents": "<table>\n	<thead>\n		<tr>\n			<th></th>\n			<th></th>\n			<th></th>\n		</tr>\n	</thead>\n	<tfoot>\n		<tr>\n			<td></td>\n			<td></td>\n			<td></td>\n		</tr>\n	</tfoot>\n	<tbody>\n		<tr>\n			<td></td>\n			<td></td>\n			<td></td>\n		</tr>\n	</tbody>\n</table>",
-			"file": "view/categories/index.php",
-			"file_size": 48,
-			"file_write_time": 130006712016757812,
+			"file": "view/categories/edit.php",
 			"settings":
 			{
-				"buffer_size": 235,
+				"buffer_size": 527,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "view/categories/delete.php",
+			"settings":
+			{
+				"buffer_size": 535,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "view/categories/index.php",
+			"settings":
+			{
+				"buffer_size": 894,
 				"line_ending": "Windows",
 				"name": "<pre><?php print_r($this->categories); ?> </pre>"
+			}
+		},
+		{
+			"file": "lib/Database.php",
+			"settings":
+			{
+				"buffer_size": 676,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "view/login/index.php",
+			"settings":
+			{
+				"buffer_size": 897,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "css/style.css",
+			"settings":
+			{
+				"buffer_size": 8319,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "view/header.php",
+			"settings":
+			{
+				"buffer_size": 2106,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "view/footer.php",
+			"settings":
+			{
+				"buffer_size": 990,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "lib/Controller.php",
+			"settings":
+			{
+				"buffer_size": 612,
+				"line_ending": "Windows"
 			}
 		}
 	],
@@ -206,13 +276,17 @@
 	},
 	"file_history":
 	[
+		"/C/xampp/htdocs/CrowFinance/controller/login.php",
+		"/C/xampp/htdocs/CrowFinance/css/style.css",
+		"/C/xampp/htdocs/CrowFinance/view/login/index.php",
+		"/C/xampp/htdocs/CrowFinance/lib/Controller.php",
+		"/C/xampp/htdocs/CrowFinance/view/categories/edit.php",
+		"/C/xampp/htdocs/CrowFinance/css/template.css",
+		"/C/xampp/htdocs/finances_mvc/models/categories_model.php",
 		"/C/xampp/htdocs/CrowFinance/controller/index.php",
 		"/C/xampp/htdocs/CrowFinance/lib/Model.php",
 		"/C/xampp/htdocs/CrowFinance/lib/Collection.php",
 		"/C/xampp/htdocs/CrowFinance/lib/User.php",
-		"/C/xampp/htdocs/CrowFinance/controller/login.php",
-		"/C/xampp/htdocs/CrowFinance/view/login/index.php",
-		"/C/xampp/htdocs/CrowFinance/lib/Controller.php",
 		"/C/xampp/htdocs/CrowFinance/index.php",
 		"/C/xampp/htdocs/CrowFinance/lib/View.php",
 		"/C/xampp/htdocs/CrowFinance/lib/Session.php",
@@ -294,6 +368,10 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"descr",
+			"float",
+			"form",
+			"']);\n",
 			"\",\n",
 			"();\n",
 			"#content, #sidebar {\n		width: 100%;\n		float: none;\n	}",
@@ -315,7 +393,7 @@
 	"groups":
 	[
 		{
-			"selected": 2,
+			"selected": 4,
 			"sheets":
 			[
 				{
@@ -323,15 +401,15 @@
 					"file": "controller/transactions.php",
 					"settings":
 					{
-						"buffer_size": 2962,
+						"buffer_size": 2968,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								123,
-								48
+								124,
+								124
 							]
 						],
 						"settings":
@@ -369,7 +447,7 @@
 							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 0.0,
+						"translation.y": 399.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
@@ -379,15 +457,15 @@
 					"file": "lib/Collection.php",
 					"settings":
 					{
-						"buffer_size": 2786,
+						"buffer_size": 3478,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								1923,
-								1923
+								3064,
+								3064
 							]
 						],
 						"settings":
@@ -396,7 +474,7 @@
 							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 1026.0,
+						"translation.y": 1539.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
@@ -406,7 +484,171 @@
 					"file": "lib/Model.php",
 					"settings":
 					{
-						"buffer_size": 2360,
+						"buffer_size": 3894,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								2515,
+								2515
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/PHP/PHP.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 1881.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 4,
+					"file": "controller/categories.php",
+					"settings":
+					{
+						"buffer_size": 3735,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								3032,
+								3032
+							]
+						],
+						"settings":
+						{
+							"auto_name": "<?php",
+							"syntax": "Packages/PHP/PHP.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 1192.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 5,
+					"file": "view/categories/edit.php",
+					"settings":
+					{
+						"buffer_size": 527,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								527,
+								527
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/PHP/PHP.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 6,
+					"file": "view/categories/delete.php",
+					"settings":
+					{
+						"buffer_size": 535,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								520,
+								520
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/PHP/PHP.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 7,
+					"file": "view/categories/index.php",
+					"settings":
+					{
+						"buffer_size": 894,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								719,
+								719
+							]
+						],
+						"settings":
+						{
+							"auto_name": "<pre><?php print_r($this->categories); ?> </pre>",
+							"syntax": "Packages/PHP/PHP.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 8,
+					"file": "lib/Database.php",
+					"settings":
+					{
+						"buffer_size": 676,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								613,
+								613
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/PHP/PHP.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 223.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 9,
+					"file": "view/login/index.php",
+					"settings":
+					{
+						"buffer_size": 897,
 						"regions":
 						{
 						},
@@ -423,30 +665,83 @@
 							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 1425.0,
+						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
 				},
 				{
-					"buffer": 4,
-					"file": "controller/categories.php",
+					"buffer": 10,
+					"file": "css/style.css",
 					"settings":
 					{
-						"buffer_size": 314,
+						"buffer_size": 8319,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								309,
-								309
+								2667,
+								2667
 							]
 						],
 						"settings":
 						{
-							"auto_name": "<?php",
+							"syntax": "Packages/CSS/CSS.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 2059.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 11,
+					"file": "view/header.php",
+					"settings":
+					{
+						"buffer_size": 2106,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								820,
+								820
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/PHP/PHP.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 114.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 12,
+					"file": "view/footer.php",
+					"settings":
+					{
+						"buffer_size": 990,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								345,
+								345
+							]
+						],
+						"settings":
+						{
 							"syntax": "Packages/PHP/PHP.tmLanguage",
 							"translate_tabs_to_spaces": false
 						},
@@ -457,25 +752,25 @@
 					"type": "text"
 				},
 				{
-					"buffer": 5,
-					"file": "view/categories/index.php",
+					"buffer": 13,
+					"file": "lib/Controller.php",
 					"settings":
 					{
-						"buffer_size": 235,
+						"buffer_size": 612,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								135,
-								135
+								0,
+								0
 							]
 						],
 						"settings":
 						{
-							"auto_name": "<pre><?php print_r($this->categories); ?> </pre>",
-							"syntax": "Packages/PHP/PHP.tmLanguage"
+							"syntax": "Packages/PHP/PHP.tmLanguage",
+							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,
@@ -527,6 +822,38 @@
 		"height": 0.0,
 		"selected_items":
 		[
+			[
+				"cont",
+				"lib/Controller.php"
+			],
+			[
+				"foote",
+				"view/footer.php"
+			],
+			[
+				"head",
+				"view/header.php"
+			],
+			[
+				"css",
+				"css/style.css"
+			],
+			[
+				"lo",
+				"view/login/index.php"
+			],
+			[
+				"login",
+				"controller/login.php"
+			],
+			[
+				"datab",
+				"lib/Database.php"
+			],
+			[
+				"ode",
+				"lib/Model.php"
+			],
 			[
 				"model",
 				"lib/Model.php"

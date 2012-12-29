@@ -25,9 +25,6 @@
 					<li>
 						<a href="index">Index</a>
 					</li>
-					<li>
-						<a href="help">Help</a>
-					</li>
 				<?php if ($this->loggedIn): ?>
 					<li>
 						<a href="dashboard">Dashboard</a>
