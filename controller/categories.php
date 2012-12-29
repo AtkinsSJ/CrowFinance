@@ -8,7 +8,7 @@ class Categories extends Controller {
 
 	public function index() {
 		$categories = new Collection('categories');
-		$categories->sortBy('name', 'DESC')->load();
+		$categories->sortBy('name', 'ASC')->load();
 
 		$since = new DateTime();
 		$since->modify('-1 year');
