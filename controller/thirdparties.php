@@ -86,4 +86,33 @@ class ThirdParties extends Controller {
 		$this->view->thirdParty = $thirdParty;
 		$this->render('edit');
 	}
+
+	public function delete($id) {
+
+		$thirdParty = new Model('thirdparties');
+
+		try {
+			$thirdParty->load($id);
+		} catch (DatabaseException $e) {
+			Session::pushMessage('The third party you tried to delete does not exist.', Message::ERROR);
+			redirect('thirdparties');
+		}
+
+		if (isset($_POST['sure'])) {
+			try {
+				$transactions = new Collection('transactions');
+				$transactions->filter('thirdparty_id = :tp', array('tp' => $id));
+				$transactions->update(array('thirdparty_id' => 0));
+
+				$thirdParty->delete();
+				Session::pushMessage("Sucessfully deleted the third party '{$thirdParty->get('name')}'", Message::SUCCESS);
+				redirect('thirdparties');
+			} catch (Exception $e) {
+				$this->view->pushMessage('Failed to delete the third party.', Message::ERROR);
+			}
+		}
+
+		$this->view->thirdParty = $thirdParty;
+		$this->render('delete');
+	}
 }

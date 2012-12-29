@@ -8,6 +8,7 @@ spl_autoload_register('autoload');
 function redirect($page) {
 	$baseUrl = Config::get('global', 'baseurl');
 	header("location: {$baseUrl}{$page}");
+	die();
 }
 
 abstract class Message {
