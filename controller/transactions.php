@@ -70,6 +70,7 @@ class Transactions extends Controller {
 		$this->view->totalOut = $totalOut;
 		$this->view->total = $totalIn - $totalOut;
 
+		$this->view->date = $dateString;
 		$this->view->previous = $previousDate;
 		$this->view->next = $nextDate;
 
