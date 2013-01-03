@@ -84,35 +84,24 @@ class Transactions extends Controller {
 			$this->view->categories[$cat->get('id')] = $cat->get('name');
 		}
 
-		$this->view->script = <<<SCRIPT
-$(document).ready(function(){
-	$('.expandDescription').on('click', function(){
-		$(this)
-			.siblings('.description').toggleClass('expanded').end()
-			.hide();
-	});
-	
-	window.descriptionResizeCallback = function(){ // When description resizes
-		var \$this = $(this);
-		
-		if (\$this.hasClass('expanded')) {
-			return;
-		}
-		
-		if (\$this.height() < \$this.prop('scrollHeight')) {
-			\$this.next('.expandDescription').show();
-		} else {
-			\$this.next('.expandDescription').hide();
-		}
-	};
-	
-	$('.description')
-		.resize( descriptionResizeCallback )
-		.each( descriptionResizeCallback ); // Show/hide buttons initially.
-});
-SCRIPT;
-
 		$this->render('view');
 	}
 
+	public function create() {
+		
+		if (isset($_POST['date'])) {
+			// Try and save it
+		}
+
+		$categories = new Collection('categories');
+		$categories->sortBy('name')->load();
+
+		$thirdParties = new Collection('thirdparties');
+		$thirdParties->sortBy('name')->load();
+
+		$this->view->categories = $categories;
+		$this->view->thirdParties = $thirdParties;
+
+		$this->render('create');
+	}
 }
