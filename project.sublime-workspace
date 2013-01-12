@@ -124,29 +124,34 @@
 	"buffers":
 	[
 		{
-			"file": "lib/Collection.php",
-			"settings":
-			{
-				"buffer_size": 3484,
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"file": "lib/Model.php",
-			"settings":
-			{
-				"buffer_size": 4571,
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"contents": "<?php\n\nclass Transactions extends Controller {\n	\n	public function __construct() {\n		parent::__construct('transactions', true);\n	}\n\n	public function view($dateString) {\n		$dateParts = explode('-', $dateString);\n\n		$previousDate = null;\n		$nextDate = null;\n\n		$transactions = new Collection('transactions');\n\n		if (isset($dateParts[2])) { // year-month-day\n			$transactions->filter('date = :date',\n				array(\n					'date' => implode('-', $dateParts)\n			));\n\n			$d = new DateTime(implode('-', $dateParts));\n			$d->modify('-1 day');\n			$previousDate = $d->format('Y-m-d');\n			$d->modify('+2 days');\n			$nextDate = $d->format('Y-m-d');\n\n		} elseif (isset($dateParts[1])) { // year-month\n			$startDate = new DateTime(\"{$dateParts[0]}-{$dateParts[1]}-01\");\n			$endDate = clone $startDate;\n			$endDate->modify('+'.($endDate->format('t')-1).' days');\n\n			$transactions->filter('date BETWEEN :startDate AND :endDate',\n				array(\n					'startDate' => $startDate->format('Y-m-d'),\n					'endDate' => $endDate->format('Y-m-d')\n			));\n\n			$startDate->modify('-1 day');\n			$previousDate = $startDate->format('Y-m');\n			$endDate->modify('+1 day');\n			$nextDate = $endDate->format('Y-m');\n\n		} else { // year\n			$transactions->filter('date BETWEEN :startDate AND :endDate',\n				array(\n					'startDate' => \"{$dateParts[0]}-01-01\",\n					'endDate' => \"{$dateParts[0]}-12-31\",\n			));\n\n			$d = new DateTime(\"{$dateParts[0]}-01-01\");\n			$d->modify('-1 year');\n			$previousDate = $d->format('Y');\n			$d->modify('+2 years');\n			$nextDate = $d->format('Y');\n		}\n\n		$transactions->sortBy('date', 'ASC')->load();\n\n		$totalIn = 0;\n		$totalOut = 0;\n		foreach ($transactions as $key => $t) {\n			$totalIn += $t->get('income');\n			$totalOut += $t->get('outgoing');\n		}\n\n		$this->view->transactions = $transactions;\n		$this->view->totalIn = $totalIn;\n		$this->view->totalOut = $totalOut;\n		$this->view->total = $totalIn - $totalOut;\n\n		$this->view->date = $dateString;\n		$this->view->previous = $previousDate;\n		$this->view->next = $nextDate;\n\n		$this->view->currency = Config::get('user', 'currency');\n\n		// Load categories\n		$categories = new Collection('categories');\n		$categories->load();\n		$this->view->categories = array( 0 => '' );\n		foreach ($categories as $cat) {\n			$this->view->categories[$cat->get('id')] = $cat->get('name');\n		}\n\n		$this->view->script = <<<SCRIPT\n$(document).ready(function(){\n	$('.expandDescription').on('click', function(){\n		$(this)\n			.siblings('.description').toggleClass('expanded').end()\n			.hide();\n	});\n	\n	window.descriptionResizeCallback = function(){ // When description resizes\n		var \\$this = $(this);\n		\n		if (\\$this.hasClass('expanded')) {\n			return;\n		}\n		\n		if (\\$this.height() < \\$this.prop('scrollHeight')) {\n			\\$this.next('.expandDescription').show();\n		} else {\n			\\$this.next('.expandDescription').hide();\n		}\n	};\n	\n	$('.description')\n		.resize( descriptionResizeCallback )\n		.each( descriptionResizeCallback ); // Show/hide buttons initially.\n});\nSCRIPT;\n\n		$this->render('view');\n	}\n\n	public function create() {\n		\n	}\n}",
 			"file": "controller/transactions.php",
-			"file_size": 3120,
-			"file_write_time": 130012667207392578,
 			"settings":
 			{
-				"buffer_size": 3037,
+				"buffer_size": 2721,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "view/transactions/create.php",
+			"settings":
+			{
+				"buffer_size": 2232,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "/C/Users/Sam/Documents/worm/Assets/BulletScript.js",
+			"settings":
+			{
+				"buffer_size": 477,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "css/style.css",
+			"settings":
+			{
+				"buffer_size": 8485,
 				"line_ending": "Windows"
 			}
 		}
@@ -154,7 +159,7 @@
 	"build_system": "",
 	"command_palette":
 	{
-		"height": 58.0,
+		"height": 392.0,
 		"selected_items":
 		[
 			[
@@ -207,18 +212,23 @@
 	},
 	"file_history":
 	[
+		"/C/xampp/htdocs/CrowFinance/view/transactions/view.php",
+		"/C/Users/Sam/AppData/Roaming/Sublime Text 2/Packages/User/Preferences.sublime-settings",
+		"/C/xampp/htdocs/CrowFinance/lib/Collection.php",
+		"/C/xampp/htdocs/CrowFinance/lib/Model.php",
+		"/C/xampp/htdocs/CrowFinance/lib/View.php",
+		"/C/xampp/htdocs/CrowFinance/view/thirdparties/create.php",
+		"/C/xampp/htdocs/CrowFinance/.gitignore",
 		"/C/xampp/htdocs/CrowFinance/controller/categories.php",
 		"/C/xampp/htdocs/CrowFinance/view/categories/index.php",
 		"/C/xampp/htdocs/CrowFinance/view/categories/edit.php",
 		"/C/xampp/htdocs/CrowFinance/controller/thirdparties.php",
-		"/C/xampp/htdocs/CrowFinance/view/thirdparties/create.php",
 		"/C/xampp/htdocs/CrowFinance/index.php",
 		"/C/xampp/htdocs/CrowFinance/view/thirdparties/delete.php",
 		"/C/xampp/htdocs/CrowFinance/css/style.css",
 		"/C/xampp/htdocs/CrowFinance/view/thirdparties/edit.php",
 		"/C/xampp/htdocs/CrowFinance/view/thirdparties/index.php",
 		"/C/xampp/htdocs/CrowFinance/controller/transactions.php",
-		"/C/xampp/htdocs/CrowFinance/view/transactions/view.php",
 		"/C/xampp/htdocs/CrowFinance/view/categories/create.php",
 		"/C/xampp/htdocs/CrowFinance/view/categories/merge.php",
 		"/C/xampp/htdocs/CrowFinance/view/header.php",
@@ -231,10 +241,7 @@
 		"/C/xampp/htdocs/CrowFinance/css/template.css",
 		"/C/xampp/htdocs/finances_mvc/models/categories_model.php",
 		"/C/xampp/htdocs/CrowFinance/controller/index.php",
-		"/C/xampp/htdocs/CrowFinance/lib/Model.php",
-		"/C/xampp/htdocs/CrowFinance/lib/Collection.php",
 		"/C/xampp/htdocs/CrowFinance/lib/User.php",
-		"/C/xampp/htdocs/CrowFinance/lib/View.php",
 		"/C/xampp/htdocs/CrowFinance/lib/Session.php",
 		"/C/xampp/htdocs/finances_mvc/views/login/index.html.php",
 		"/C/xampp/htdocs/finances_mvc/controllers/login.php",
@@ -304,6 +311,7 @@
 		"height": 0.0,
 		"where_history":
 		[
+			"<open folders>"
 		]
 	},
 	"find_state":
@@ -311,6 +319,10 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"\\$",
+			"formLine",
+			"todo",
+			"category",
 			"formline",
 			"textarea",
 			"cat",
@@ -345,18 +357,18 @@
 			[
 				{
 					"buffer": 0,
-					"file": "lib/Collection.php",
+					"file": "controller/transactions.php",
 					"settings":
 					{
-						"buffer_size": 3484,
+						"buffer_size": 2721,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								688,
-								688
+								2719,
+								2719
 							]
 						],
 						"settings":
@@ -365,31 +377,57 @@
 							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 1596.0,
+						"translation.y": 1197.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
 				},
 				{
 					"buffer": 1,
-					"file": "lib/Model.php",
+					"file": "view/transactions/create.php",
 					"settings":
 					{
-						"buffer_size": 4571,
+						"buffer_size": 2232,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								4571,
-								4571
+								2212,
+								2212
 							]
 						],
 						"settings":
 						{
 							"syntax": "Packages/PHP/PHP.tmLanguage",
 							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 684.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "/C/Users/Sam/Documents/worm/Assets/BulletScript.js",
+					"settings":
+					{
+						"buffer_size": 477,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage"
 						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,
@@ -398,28 +436,28 @@
 					"type": "text"
 				},
 				{
-					"buffer": 2,
-					"file": "controller/transactions.php",
+					"buffer": 3,
+					"file": "css/style.css",
 					"settings":
 					{
-						"buffer_size": 3037,
+						"buffer_size": 8485,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								3032,
-								3032
+								7560,
+								7560
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/PHP/PHP.tmLanguage",
+							"syntax": "Packages/CSS/CSS.tmLanguage",
 							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 1881.0,
+						"translation.y": 7073.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
@@ -469,12 +507,20 @@
 		"selected_items":
 		[
 			[
-				"transactions",
-				"controller/transactions.php"
+				"css",
+				"css/style.css"
+			],
+			[
+				"view",
+				"lib/View.php"
 			],
 			[
 				"create",
 				"view/thirdparties/create.php"
+			],
+			[
+				"transactions",
+				"controller/transactions.php"
 			],
 			[
 				"inde",
@@ -483,10 +529,6 @@
 			[
 				"delete",
 				"view/categories/delete.php"
-			],
-			[
-				"css",
-				"css/style.css"
 			],
 			[
 				"tran",
@@ -541,10 +583,6 @@
 				"lib/Collection.php"
 			],
 			[
-				"view",
-				"lib/View.php"
-			],
-			[
 				"boots",
 				"lib/Bootstrap.php"
 			],
@@ -574,7 +612,7 @@
 	"show_minimap": true,
 	"show_open_files": false,
 	"show_tabs": true,
-	"side_bar_visible": false,
+	"side_bar_visible": true,
 	"side_bar_width": 207.0,
 	"status_bar_visible": true
 }

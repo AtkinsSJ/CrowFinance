@@ -43,6 +43,14 @@ select {
 	width: 200px;
 }
 
+input[type=date],
+input[type=datetime],
+input[type=month],
+input[type=week],
+input[type=time] {
+	padding: 0px;
+}
+
 textarea {
 	border: 1px solid #aaa;
 	padding: 3px;
@@ -394,6 +402,10 @@ table .ralign {
 
 .formLine.buttons {
 	text-align: right;
+}
+
+.formLine.disabled {
+	background: #eee;
 }
 
 /*** Option Groups ***/
