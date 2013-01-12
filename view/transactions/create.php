@@ -55,4 +55,17 @@
 	</div>
 </div>
 
-<?php $this->script = "test"; ?>
+<?php $this->script = <<<'SCRIPT'
+$(document).ready(function(){
+	var $fadingInputs = $('#amount,#thirdParty'),
+		$fadingDivs = $fadingInputs.parent();
+	$fadingInputs.attr('disabled', true).trigger("liszt:updated");
+	$fadingDivs.addClass('disabled');
+
+	$('#typeIn, #typeOut').one('change', function(e){
+		$fadingInputs.attr('disabled', false).trigger("liszt:updated");
+		$fadingDivs.removeClass('disabled');
+	});
+});
+SCRIPT;
+?>

@@ -69,7 +69,7 @@
 <a class="button secondary left" href="transactions/view/<?= $this->previous ?>">Previous</a>
 <a class="button secondary right floatRight" href="transactions/view/<?= $this->next ?>">Next</a>
 
-<?php $this->script = <<<SCRIPT
+<?php $this->script = <<<'SCRIPT'
 $(document).ready(function(){
 	$('.expandDescription').on('click', function(){
 		$(this)
@@ -78,16 +78,16 @@ $(document).ready(function(){
 	});
 	
 	window.descriptionResizeCallback = function(){ // When description resizes
-		var \$this = $(this);
+		var $this = $(this);
 		
-		if (\$this.hasClass('expanded')) {
+		if ($this.hasClass('expanded')) {
 			return;
 		}
 		
-		if (\$this.height() < \$this.prop('scrollHeight')) {
-			\$this.next('.expandDescription').show();
+		if ($this.height() < $this.prop('scrollHeight')) {
+			$this.next('.expandDescription').show();
 		} else {
-			\$this.next('.expandDescription').hide();
+			$this.next('.expandDescription').hide();
 		}
 	};
 	
