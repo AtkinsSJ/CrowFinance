@@ -23,6 +23,11 @@
 	Fancy form styling
 ***********************************************/
 
+input[type=checkbox],
+input[type=radio] {
+	vertical-align: middle;
+}
+
 input[type=text],
 input[type=date],
 input[type=datetime],
@@ -379,6 +384,7 @@ table .ralign {
 	padding: 3px 0;
 	margin: 3px 0;
 	clear: both;
+	position: relative;
 }
 .formLine:nth-child(even) {
 	background-color: $( pale-blue );
@@ -406,6 +412,25 @@ table .ralign {
 
 .formLine.disabled {
 	background: #eee;
+}
+
+/* Checkbox that enables/disables an input */
+.formLine .enabler {
+	position: absolute;
+	right: 200px;
+	margin: 6px;
+}
+
+/* inline radio button group */
+.formLine .radioGroup {
+	float: right;
+	width: 200px;
+	display: inline;
+}
+.formLine .radioGroup .radioOption {
+	display: inline-block;
+	float: left;
+	width: 50%;
 }
 
 /*** Option Groups ***/

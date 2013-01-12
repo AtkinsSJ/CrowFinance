@@ -90,7 +90,25 @@ class Transactions extends Controller {
 	public function create() {
 		
 		if (isset($_POST['date'])) {
+
+			print_r($_POST);
+
 			// Try and save it
+			$transaction = new Model('transactions');
+			$transaction->set('date', $_POST['date'])
+						->set('description', $_POST['description']);
+			switch ($_POST['type']) {
+			case 'in':
+				$transaction->set('income', $_POST['amount']);
+				break;
+			case 'out':
+				$transaction->set('outgoing', $_POST['amount']);
+				break;
+			}
+
+			// third party if set
+
+			// category if set
 		}
 
 		$categories = new Collection('categories');

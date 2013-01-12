@@ -124,10 +124,13 @@
 	"buffers":
 	[
 		{
+			"contents": "<?php\n\nclass Transactions extends Controller {\n	\n	public function __construct() {\n		parent::__construct('transactions', true);\n	}\n\n	public function view($dateString) {\n		$dateParts = explode('-', $dateString);\n\n		$previousDate = null;\n		$nextDate = null;\n\n		$transactions = new Collection('transactions');\n\n		if (isset($dateParts[2])) { // year-month-day\n			$transactions->filter('date = :date',\n				array(\n					'date' => implode('-', $dateParts)\n			));\n\n			$d = new DateTime(implode('-', $dateParts));\n			$d->modify('-1 day');\n			$previousDate = $d->format('Y-m-d');\n			$d->modify('+2 days');\n			$nextDate = $d->format('Y-m-d');\n\n		} elseif (isset($dateParts[1])) { // year-month\n			$startDate = new DateTime(\"{$dateParts[0]}-{$dateParts[1]}-01\");\n			$endDate = clone $startDate;\n			$endDate->modify('+'.($endDate->format('t')-1).' days');\n\n			$transactions->filter('date BETWEEN :startDate AND :endDate',\n				array(\n					'startDate' => $startDate->format('Y-m-d'),\n					'endDate' => $endDate->format('Y-m-d')\n			));\n\n			$startDate->modify('-1 day');\n			$previousDate = $startDate->format('Y-m');\n			$endDate->modify('+1 day');\n			$nextDate = $endDate->format('Y-m');\n\n		} else { // year\n			$transactions->filter('date BETWEEN :startDate AND :endDate',\n				array(\n					'startDate' => \"{$dateParts[0]}-01-01\",\n					'endDate' => \"{$dateParts[0]}-12-31\",\n			));\n\n			$d = new DateTime(\"{$dateParts[0]}-01-01\");\n			$d->modify('-1 year');\n			$previousDate = $d->format('Y');\n			$d->modify('+2 years');\n			$nextDate = $d->format('Y');\n		}\n\n		$transactions->sortBy('date', 'ASC')->load();\n\n		$totalIn = 0;\n		$totalOut = 0;\n		foreach ($transactions as $key => $t) {\n			$totalIn += $t->get('income');\n			$totalOut += $t->get('outgoing');\n		}\n\n		$this->view->transactions = $transactions;\n		$this->view->totalIn = $totalIn;\n		$this->view->totalOut = $totalOut;\n		$this->view->total = $totalIn - $totalOut;\n\n		$this->view->date = $dateString;\n		$this->view->previous = $previousDate;\n		$this->view->next = $nextDate;\n\n		$this->view->currency = Config::get('user', 'currency');\n\n		// Load categories\n		$categories = new Collection('categories');\n		$categories->load();\n		$this->view->categories = array( 0 => '' );\n		foreach ($categories as $cat) {\n			$this->view->categories[$cat->get('id')] = $cat->get('name');\n		}\n\n		$this->render('view');\n	}\n\n	public function create() {\n		\n		if (isset($_POST['date'])) {\n\n			print_r($_POST);\n\n			// Try and save it\n			$transaction = new Model('transactions');\n			$transaction->set('date', $_POST['date'])\n						->set('description', $_POST['description']);\n			switch ($_POST['type']) {\n			case 'in':\n				$transaction->set('income', $_POST['amount']);\n				break;\n			case 'out':\n				$transaction->set('outgoing', $_POST['amount']);\n				break;\n			default:\n				\n			}\n\n			// third party if set\n			if (isset($_POST['']))\n\n			// category if set\n		}\n\n		$categories = new Collection('categories');\n		$categories->sortBy('name')->load();\n\n		$thirdParties = new Collection('thirdparties');\n		$thirdParties->sortBy('name')->load();\n\n		$this->view->categories = $categories;\n		$this->view->thirdParties = $thirdParties;\n\n		$this->render('create');\n	}\n}",
 			"file": "controller/transactions.php",
+			"file_size": 3246,
+			"file_write_time": 130024731080900234,
 			"settings":
 			{
-				"buffer_size": 2721,
+				"buffer_size": 3165,
 				"line_ending": "Windows"
 			}
 		},
@@ -135,23 +138,23 @@
 			"file": "view/transactions/create.php",
 			"settings":
 			{
-				"buffer_size": 2232,
+				"buffer_size": 2307,
 				"line_ending": "Windows"
-			}
-		},
-		{
-			"file": "/C/Users/Sam/Documents/worm/Assets/BulletScript.js",
-			"settings":
-			{
-				"buffer_size": 477,
-				"line_ending": "Unix"
 			}
 		},
 		{
 			"file": "css/style.css",
 			"settings":
 			{
-				"buffer_size": 8485,
+				"buffer_size": 8599,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "lib/Model.php",
+			"settings":
+			{
+				"buffer_size": 4571,
 				"line_ending": "Windows"
 			}
 		}
@@ -159,9 +162,29 @@
 	"build_system": "",
 	"command_palette":
 	{
-		"height": 392.0,
+		"height": 150.0,
 		"selected_items":
 		[
+			[
+				"insta",
+				"Package Control: Install Package"
+			],
+			[
+				"install",
+				"Package Control: Install Package"
+			],
+			[
+				"pack",
+				"Package Control: Install Package"
+			],
+			[
+				"pa",
+				"Package Control: List Packages"
+			],
+			[
+				"packag",
+				"Package Control: Install Package"
+			],
 			[
 				"ssphp",
 				"Set Syntax: PHP"
@@ -171,20 +194,8 @@
 				"Set Syntax: PHP"
 			],
 			[
-				"pack",
-				"Package Control: Discover Packages"
-			],
-			[
 				"package",
 				"Package Control: List Packages"
-			],
-			[
-				"insta",
-				"Package Control: Install Package"
-			],
-			[
-				"install",
-				"Package Control: Install Package"
 			],
 			[
 				"ssh",
@@ -195,7 +206,7 @@
 				"Snippet: Start Docblock"
 			]
 		],
-		"width": 400.0
+		"width": 512.0
 	},
 	"console":
 	{
@@ -212,6 +223,8 @@
 	},
 	"file_history":
 	[
+		"/C/xampp/htdocs/CrowFinance/css/chosen.css",
+		"/C/Users/Sam/Documents/worm/Assets/BulletScript.js",
 		"/C/xampp/htdocs/CrowFinance/view/transactions/view.php",
 		"/C/Users/Sam/AppData/Roaming/Sublime Text 2/Packages/User/Preferences.sublime-settings",
 		"/C/xampp/htdocs/CrowFinance/lib/Collection.php",
@@ -319,6 +332,8 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"chzn-",
+			"chzn-single",
 			"\\$",
 			"formLine",
 			"todo",
@@ -352,7 +367,7 @@
 	"groups":
 	[
 		{
-			"selected": 2,
+			"selected": 1,
 			"sheets":
 			[
 				{
@@ -360,15 +375,15 @@
 					"file": "controller/transactions.php",
 					"settings":
 					{
-						"buffer_size": 2721,
+						"buffer_size": 3165,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								2719,
-								2719
+								2783,
+								2783
 							]
 						],
 						"settings":
@@ -377,7 +392,7 @@
 							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 1197.0,
+						"translation.y": 2223.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
@@ -387,15 +402,15 @@
 					"file": "view/transactions/create.php",
 					"settings":
 					{
-						"buffer_size": 2232,
+						"buffer_size": 2307,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								2212,
-								2212
+								2292,
+								2292
 							]
 						],
 						"settings":
@@ -404,17 +419,44 @@
 							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 684.0,
+						"translation.y": 855.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
 				},
 				{
 					"buffer": 2,
-					"file": "/C/Users/Sam/Documents/worm/Assets/BulletScript.js",
+					"file": "css/style.css",
 					"settings":
 					{
-						"buffer_size": 477,
+						"buffer_size": 8599,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								913,
+								913
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/CSS/CSS.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 285.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "lib/Model.php",
+					"settings":
+					{
+						"buffer_size": 4571,
 						"regions":
 						{
 						},
@@ -427,37 +469,11 @@
 						],
 						"settings":
 						{
-							"syntax": "Packages/JavaScript/JavaScript.tmLanguage"
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 3,
-					"file": "css/style.css",
-					"settings":
-					{
-						"buffer_size": 8485,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								7560,
-								7560
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/CSS/CSS.tmLanguage",
+							"syntax": "Packages/PHP/PHP.tmLanguage",
 							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 7073.0,
+						"translation.y": 1425.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
@@ -506,6 +522,14 @@
 		"height": 0.0,
 		"selected_items":
 		[
+			[
+				"chosen",
+				"css/chosen.css"
+			],
+			[
+				"model",
+				"lib/Model.php"
+			],
 			[
 				"css",
 				"css/style.css"
@@ -575,10 +599,6 @@
 				"lib/Model.php"
 			],
 			[
-				"model",
-				"lib/Model.php"
-			],
-			[
 				"collection",
 				"lib/Collection.php"
 			],
@@ -612,7 +632,7 @@
 	"show_minimap": true,
 	"show_open_files": false,
 	"show_tabs": true,
-	"side_bar_visible": true,
+	"side_bar_visible": false,
 	"side_bar_width": 207.0,
 	"status_bar_visible": true
 }
