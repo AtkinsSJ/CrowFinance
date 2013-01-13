@@ -6,6 +6,11 @@ class Transactions extends Controller {
 		parent::__construct('transactions', true);
 	}
 
+	public function index() {
+		$date = new DateTime();
+		$this->view($date->format('Y-m'));
+	}
+
 	public function view($dateString) {
 		$dateParts = explode('-', $dateString);
 
@@ -91,24 +96,49 @@ class Transactions extends Controller {
 		
 		if (isset($_POST['date'])) {
 
-			print_r($_POST);
-
 			// Try and save it
 			$transaction = new Model('transactions');
+			// TODO: Ensure date is valid
 			$transaction->set('date', $_POST['date'])
 						->set('description', $_POST['description']);
+
+			// TODO: Ensure amount is valid
 			switch ($_POST['type']) {
 			case 'in':
-				$transaction->set('income', $_POST['amount']);
+				$transaction->set('income', $_POST['amount'])
+							->set('outgoing', 0);
 				break;
 			case 'out':
-				$transaction->set('outgoing', $_POST['amount']);
+				$transaction->set('outgoing', $_POST['amount'])
+							->set('income', 0);
 				break;
+			default:
+				// TODO: Some kind of error, as no type was selected
 			}
 
 			// third party if set
+			if (isset($_POST['thirdParty'])) {
+				// TODO: Ensure third party is valid
+				$transaction->set('thirdparty_id', $_POST['thirdParty']);
+			} else {
+				$transaction->set('thirdparty_id', 0);
+			}
 
 			// category if set
+			if (isset($_POST['category'])) {
+				// TODO: Ensure category is valid
+				$transaction->set('category_id', $_POST['category']);
+			} else {
+				$transaction->set('category_id', 0);
+			}
+
+			try {
+				$transaction->save();
+				Session::pushMessage('Successfully created new transaction.', Message::SUCCESS);
+				redirect('transactions');
+			} catch (Exception $e) {
+				$this->view->pushMessage($e->getMessage(), Message::ERROR);
+			}
 		}
 
 		$categories = new Collection('categories');

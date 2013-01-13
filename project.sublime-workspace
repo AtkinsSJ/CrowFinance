@@ -4,6 +4,10 @@
 		"selected_items":
 		[
 			[
+				"categor",
+				"categorySelector"
+			],
+			[
 				"th",
 				"thirdparties"
 			],
@@ -88,10 +92,6 @@
 				"ERROR"
 			],
 			[
-				"categor",
-				"categoryId"
-			],
-			[
 				"userId",
 				"userId"
 			],
@@ -138,7 +138,7 @@
 			"file": "view/transactions/create.php",
 			"settings":
 			{
-				"buffer_size": 2307,
+				"buffer_size": 2918,
 				"line_ending": "Windows"
 			}
 		},
@@ -146,7 +146,7 @@
 			"file": "css/style.css",
 			"settings":
 			{
-				"buffer_size": 8599,
+				"buffer_size": 9007,
 				"line_ending": "Windows"
 			}
 		},
@@ -162,19 +162,23 @@
 	"build_system": "",
 	"command_palette":
 	{
-		"height": 150.0,
+		"height": 380.0,
 		"selected_items":
 		[
+			[
+				"Zen Coding: ",
+				"Zen Coding: Zen as you type"
+			],
+			[
+				"pack",
+				"Package Control: List Packages"
+			],
 			[
 				"insta",
 				"Package Control: Install Package"
 			],
 			[
 				"install",
-				"Package Control: Install Package"
-			],
-			[
-				"pack",
 				"Package Control: Install Package"
 			],
 			[
@@ -206,7 +210,7 @@
 				"Snippet: Start Docblock"
 			]
 		],
-		"width": 512.0
+		"width": 400.0
 	},
 	"console":
 	{
@@ -223,6 +227,7 @@
 	},
 	"file_history":
 	[
+		"/C/Users/Sam/AppData/Roaming/Sublime Text 2/Packages/jQuery/on.sublime-snippet",
 		"/C/xampp/htdocs/CrowFinance/css/chosen.css",
 		"/C/Users/Sam/Documents/worm/Assets/BulletScript.js",
 		"/C/xampp/htdocs/CrowFinance/view/transactions/view.php",
@@ -332,6 +337,8 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"formline",
+			"checkbox",
 			"chzn-",
 			"chzn-single",
 			"\\$",
@@ -367,7 +374,7 @@
 	"groups":
 	[
 		{
-			"selected": 1,
+			"selected": 0,
 			"sheets":
 			[
 				{
@@ -392,7 +399,7 @@
 							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 2223.0,
+						"translation.y": 1596.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
@@ -402,15 +409,15 @@
 					"file": "view/transactions/create.php",
 					"settings":
 					{
-						"buffer_size": 2307,
+						"buffer_size": 2918,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								2292,
-								2292
+								1230,
+								1230
 							]
 						],
 						"settings":
@@ -418,8 +425,8 @@
 							"syntax": "Packages/PHP/PHP.tmLanguage",
 							"translate_tabs_to_spaces": false
 						},
-						"translation.x": 0.0,
-						"translation.y": 855.0,
+						"translation.x": 100.0,
+						"translation.y": 402.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
@@ -429,15 +436,15 @@
 					"file": "css/style.css",
 					"settings":
 					{
-						"buffer_size": 8599,
+						"buffer_size": 9007,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								913,
-								913
+								7833,
+								7833
 							]
 						],
 						"settings":
@@ -446,7 +453,7 @@
 							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 285.0,
+						"translation.y": 7801.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
