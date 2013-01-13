@@ -149,7 +149,8 @@ class Transactions extends Controller {
 
 		$this->view->categories = $categories;
 		$this->view->thirdParties = $thirdParties;
+		$this->view->title = 'Create a Transaction';
 
-		$this->render('create');
+		$this->render('edit');
 	}
 }
