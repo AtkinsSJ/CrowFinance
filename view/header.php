@@ -71,6 +71,6 @@
 				</div>
 			<?php endif; ?>
 			
-			<?php if (isset($this->title)) {
+			<?php /*if (isset($this->title)) {
 				echo '<h2 class="contentTitle">', $this->title, '</h2>';
-			}?>
+			}*/?>
