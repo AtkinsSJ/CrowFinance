@@ -8,12 +8,12 @@
 		<form action="transactions/create" method="post">
 			<div class="formLine">
 				<label for="date">Date</label>
-				<input type="date" id="date" name="date"/>
+				<input type="date" id="date" name="date" value="<?= $this->date ?>" />
 			</div>
 
 			<div class="formLine">
 				<label for="description">Description</label>
-				<textarea name="description" id="description" cols="53" rows="6"></textarea>
+				<textarea name="description" id="description" cols="53" rows="6"><?= $this->description ?></textarea>
 			</div>
 
 			<div class="formLine">
@@ -44,7 +44,7 @@
 
 			<div class="formLine">
 				<label for="amount">Amount</label>
-				<input type="number" id="amount" class="currency" name="amount" min="0" step="0.01" value="0"/>
+				<input type="number" id="amount" class="currency" name="amount" min="0" step="0.01" value="<?= $this->amount ?>"/>
 			</div>
 
 			<div class="formLine">
