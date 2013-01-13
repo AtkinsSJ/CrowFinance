@@ -124,21 +124,18 @@
 	"buffers":
 	[
 		{
-			"contents": "<?php\n\nclass Transactions extends Controller {\n	\n	public function __construct() {\n		parent::__construct('transactions', true);\n	}\n\n	public function view($dateString) {\n		$dateParts = explode('-', $dateString);\n\n		$previousDate = null;\n		$nextDate = null;\n\n		$transactions = new Collection('transactions');\n\n		if (isset($dateParts[2])) { // year-month-day\n			$transactions->filter('date = :date',\n				array(\n					'date' => implode('-', $dateParts)\n			));\n\n			$d = new DateTime(implode('-', $dateParts));\n			$d->modify('-1 day');\n			$previousDate = $d->format('Y-m-d');\n			$d->modify('+2 days');\n			$nextDate = $d->format('Y-m-d');\n\n		} elseif (isset($dateParts[1])) { // year-month\n			$startDate = new DateTime(\"{$dateParts[0]}-{$dateParts[1]}-01\");\n			$endDate = clone $startDate;\n			$endDate->modify('+'.($endDate->format('t')-1).' days');\n\n			$transactions->filter('date BETWEEN :startDate AND :endDate',\n				array(\n					'startDate' => $startDate->format('Y-m-d'),\n					'endDate' => $endDate->format('Y-m-d')\n			));\n\n			$startDate->modify('-1 day');\n			$previousDate = $startDate->format('Y-m');\n			$endDate->modify('+1 day');\n			$nextDate = $endDate->format('Y-m');\n\n		} else { // year\n			$transactions->filter('date BETWEEN :startDate AND :endDate',\n				array(\n					'startDate' => \"{$dateParts[0]}-01-01\",\n					'endDate' => \"{$dateParts[0]}-12-31\",\n			));\n\n			$d = new DateTime(\"{$dateParts[0]}-01-01\");\n			$d->modify('-1 year');\n			$previousDate = $d->format('Y');\n			$d->modify('+2 years');\n			$nextDate = $d->format('Y');\n		}\n\n		$transactions->sortBy('date', 'ASC')->load();\n\n		$totalIn = 0;\n		$totalOut = 0;\n		foreach ($transactions as $key => $t) {\n			$totalIn += $t->get('income');\n			$totalOut += $t->get('outgoing');\n		}\n\n		$this->view->transactions = $transactions;\n		$this->view->totalIn = $totalIn;\n		$this->view->totalOut = $totalOut;\n		$this->view->total = $totalIn - $totalOut;\n\n		$this->view->date = $dateString;\n		$this->view->previous = $previousDate;\n		$this->view->next = $nextDate;\n\n		$this->view->currency = Config::get('user', 'currency');\n\n		// Load categories\n		$categories = new Collection('categories');\n		$categories->load();\n		$this->view->categories = array( 0 => '' );\n		foreach ($categories as $cat) {\n			$this->view->categories[$cat->get('id')] = $cat->get('name');\n		}\n\n		$this->render('view');\n	}\n\n	public function create() {\n		\n		if (isset($_POST['date'])) {\n\n			print_r($_POST);\n\n			// Try and save it\n			$transaction = new Model('transactions');\n			$transaction->set('date', $_POST['date'])\n						->set('description', $_POST['description']);\n			switch ($_POST['type']) {\n			case 'in':\n				$transaction->set('income', $_POST['amount']);\n				break;\n			case 'out':\n				$transaction->set('outgoing', $_POST['amount']);\n				break;\n			default:\n				\n			}\n\n			// third party if set\n			if (isset($_POST['']))\n\n			// category if set\n		}\n\n		$categories = new Collection('categories');\n		$categories->sortBy('name')->load();\n\n		$thirdParties = new Collection('thirdparties');\n		$thirdParties->sortBy('name')->load();\n\n		$this->view->categories = $categories;\n		$this->view->thirdParties = $thirdParties;\n\n		$this->render('create');\n	}\n}",
 			"file": "controller/transactions.php",
-			"file_size": 3246,
-			"file_write_time": 130024731080900234,
 			"settings":
 			{
-				"buffer_size": 3165,
+				"buffer_size": 4071,
 				"line_ending": "Windows"
 			}
 		},
 		{
-			"file": "view/transactions/create.php",
+			"file": "view/transactions/edit.php",
 			"settings":
 			{
-				"buffer_size": 2918,
+				"buffer_size": 2992,
 				"line_ending": "Windows"
 			}
 		},
@@ -155,6 +152,22 @@
 			"settings":
 			{
 				"buffer_size": 4571,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "view/header.php",
+			"settings":
+			{
+				"buffer_size": 2110,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "lib/View.php",
+			"settings":
+			{
+				"buffer_size": 990,
 				"line_ending": "Windows"
 			}
 		}
@@ -374,7 +387,7 @@
 	"groups":
 	[
 		{
-			"selected": 0,
+			"selected": 1,
 			"sheets":
 			[
 				{
@@ -382,15 +395,15 @@
 					"file": "controller/transactions.php",
 					"settings":
 					{
-						"buffer_size": 3165,
+						"buffer_size": 4071,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								2783,
-								2783
+								3729,
+								3729
 							]
 						],
 						"settings":
@@ -399,25 +412,25 @@
 							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 1596.0,
+						"translation.y": 2565.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
 				},
 				{
 					"buffer": 1,
-					"file": "view/transactions/create.php",
+					"file": "view/transactions/edit.php",
 					"settings":
 					{
-						"buffer_size": 2918,
+						"buffer_size": 2992,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								1230,
-								1230
+								1938,
+								1938
 							]
 						],
 						"settings":
@@ -425,8 +438,8 @@
 							"syntax": "Packages/PHP/PHP.tmLanguage",
 							"translate_tabs_to_spaces": false
 						},
-						"translation.x": 100.0,
-						"translation.y": 402.0,
+						"translation.x": 0.0,
+						"translation.y": 798.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
@@ -480,7 +493,61 @@
 							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 1425.0,
+						"translation.y": 2380.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 4,
+					"file": "view/header.php",
+					"settings":
+					{
+						"buffer_size": 2110,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1607,
+								1607
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/PHP/PHP.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 969.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 5,
+					"file": "lib/View.php",
+					"settings":
+					{
+						"buffer_size": 990,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/PHP/PHP.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 228.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
@@ -530,6 +597,14 @@
 		"selected_items":
 		[
 			[
+				"view",
+				"lib/View.php"
+			],
+			[
+				"header",
+				"view/header.php"
+			],
+			[
 				"chosen",
 				"css/chosen.css"
 			],
@@ -540,10 +615,6 @@
 			[
 				"css",
 				"css/style.css"
-			],
-			[
-				"view",
-				"lib/View.php"
 			],
 			[
 				"create",
